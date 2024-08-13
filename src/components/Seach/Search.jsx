@@ -1,35 +1,40 @@
-import React from "react";
-export const Search = ({
-  size = 24,
-  strokeWidth = 1.5,
-  width,
-  height,
-  ...props
-}) => (
-  <svg
-    aria-hidden="true"
-    fill="none"
-    focusable="false"
-    height={height || size}
-    role="presentation"
-    viewBox="0 0 24 24"
-    width={width || size}
-    {...props}
-  >
-    <path
-      d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-    />
-    <path
-      d="M22 22L20 20"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-    />
-  </svg>
-);
+// SearchComponent.jsx
+import React, { useState } from 'react';
+import { IoArrowForwardOutline, IoSearch } from "react-icons/io5";
+import { MdAttachFile } from "react-icons/md";
 
+function SearchComponent({ search, setSearch, handleInputChange, handleSearch, renderDropdowns, suggestions, handleSuggestionClick }) {
+  return (
+    <>
+      <div className="relative animated-border bottom-0 flex flex-col items-center justify-between hover:cursor-pointer rounded-3xl p-4">
+        <div className="w-full relative flex items-center">
+          <div className="absolute left-3 flex items-center">
+            <MdAttachFile className="text-gray-500 mr-2" />
+          </div>
+          <input
+            type="text"
+            className="rounded-2xl p-3 pl-12 w-full text-[#14343B]"
+            placeholder="Ask me anything..."
+            value={search}
+            onChange={handleInputChange}
+          />
+          <div className="absolute right-3 flex items-center">
+            <IoSearch
+              onClick={handleSearch}
+              className={`text-gray-500 ml-2 ${search.trim() === '' ? 'cursor-not-allowed text-gray-300' : 'cursor-pointer'}`}
+              style={{ opacity: search.trim() === '' ? 0.5 : 1 }}
+            />
+          </div>
+        </div>
+
+        <div className="w-full flex flex-wrap text-gray-600 mt-2 gap-2">
+          {renderDropdowns()}
+        </div>
+      </div>
+
+     
+    </>
+  );
+}
+
+export default SearchComponent;
