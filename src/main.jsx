@@ -14,6 +14,7 @@ import Docr from './pages/docr.jsx';
 import DocumentManager from './pages/Alld.jsx';
 import DocumentEditorPage from './pages/Write.jsx';
 import Profile from './pages/Profile.jsx';
+import UploadPage from './pages/UploadPage.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,6 +43,8 @@ const router = createBrowserRouter([
         element:<DocumentManager/>
       },
       {
+        path:'upload',
+        element:<UploadPage/>
 
       },
       {

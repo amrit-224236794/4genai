@@ -34,12 +34,44 @@ const ChatWithPDFPage = () => {
       if (search.trim()) {
         console.log('Searching for:', search);
         // Add search functionality here
-      }
+      } 
     };
-  
     const renderDropdowns = () => {
-      // Render dropdown suggestions or results here
-      return null;
+      
+          return (
+            <div className="flex flex-wrap gap-2">
+              <select className="flex-1 border p-2 rounded-md">
+                <option>Model – 4GenAI</option>
+                <option>Mistral</option>
+                <option>Llama 70B</option>
+                <option>Wizard</option>
+                <option>GPT 3.5</option>
+                <option>GPT 4.0</option>
+              </select>
+              <select className="flex-1 border p-2 rounded-md">
+                <option>Sources – All</option>
+                <option>Academic</option>
+                <option>Wikipedia</option>
+                <option>Social media</option>
+                <option>Maths</option>
+                <option>Youtube</option>
+                <option>Travel</option>
+              </select>
+              <select className="flex-1 border p-2 rounded-md">
+                <option>Response length – Auto</option>
+                <option>short</option>
+                <option>medium</option>
+                <option>large</option>
+              </select>
+              <select className="flex-1 border p-2 rounded-md">
+                <option>Response type – Paragraph</option>
+                <option>pointers</option>
+                <option>summary</option>
+              </select>
+            </div>
+          )
+       
+      
     };
   
     const handleSuggestionClick = (suggestion) => {
