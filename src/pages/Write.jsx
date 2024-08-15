@@ -78,7 +78,7 @@ useEffect(() => {
         {/* Conditional Render based on selectedOption */}
         {selectedOption === 'compose' && (
           <>
-            <h2 className="text-2xl font-semibold mb-4">Search Bar</h2>
+            <h2 className="text-2xl font-semibold mb-4">Write</h2>
             <input
               type="text"
               className="w-full p-3 mb-4 border rounded-md"
@@ -172,7 +172,7 @@ useEffect(() => {
 
       {/* Left side: Writing Section */}
       <div className="w-1/2 p-4 bg-white border-r border-gray-300">
-        <h2 className="text-2xl font-semibold mb-4">Writing Area</h2>
+        <h2 className="text-2xl font-semibold mb-4">Preview</h2>
         <div
           contentEditable
           className="h-full p-4 border rounded bg-gray-50"
