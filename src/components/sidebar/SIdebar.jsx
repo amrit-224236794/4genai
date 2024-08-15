@@ -54,7 +54,7 @@ const Sidebar = () => {
           </h1>
         </div>
 
-        <ul className="pt-10 mt-12 space-y-6">  {/* Increased spacing */}
+        <ul className="pt-10  space-y-2">  {/* Increased spacing */}
           {Menus.map((Menu, index) => (
             <li
               key={index}
