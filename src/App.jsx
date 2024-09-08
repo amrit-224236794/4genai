@@ -7,24 +7,29 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User } from "@ne
 
 function App() {
   return (
-    <div className="relative flex flex-col h-screen">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-[#FCFCF9] bg-no-repeat opacity-10"
-        style={{
-          backgroundImage: "url('')",
-        }}
-      ></div>
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="sm:hidden">
-          <Nav />
-        </div>
-        <div className="flex flex-1">
-          {/* Sidebar */}
-          <div className="hidden sm:block ">
-            <Sidebar />
+    <div className="relative flex h-screen">
+      {/* Sidebar */}
+      <div className="hidden sm:block sticky top-0 h-screen">
+        <Sidebar />
+      </div>
+
+      <div className="flex flex-col flex-1 h-screen overflow-auto">
+        <div className="relative flex flex-col h-full">
+          {/* Navbar */}
+          <div className="sm:hidden">
+            <Nav />
           </div>
-          <div className="flex-1 flex justify-center items-center relative">
-            {/* Accounts on top */}
+
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-[#FCFCF9] bg-no-repeat opacity-10"
+            style={{
+              backgroundImage: "url('')",
+            }}
+          ></div>
+
+          <div className="relative z-10 flex-1 flex flex-col overflow-auto">
+            {/* User Profile Dropdown */}
             <div className="hidden sm:block absolute top-4 right-8 cursor-pointer">
               <Dropdown placement="bottom-start">
                 <DropdownTrigger>
@@ -53,11 +58,14 @@ function App() {
               </Dropdown>
             </div>
 
-            {/* Components Rendering */}
-            <div className="flex justify-center items-start w-full h-full pt-4 pb-4">
+            {/* Page Content */}
+            <div className="flex-1 flex justify-center items-start pt-4 pb-4">
               <Outlet />
             </div>
           </div>
+
+          {/* Footer */}
+          <Footer />
         </div>
       </div>
     </div>

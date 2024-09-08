@@ -15,6 +15,8 @@ import DocumentManager from './pages/Alld.jsx';
 import DocumentEditorPage from './pages/Write.jsx';
 import Profile from './pages/Profile.jsx';
 import UploadPage from './pages/UploadPage.jsx';
+import PersonaPage from './pages/PersonaPage.jsx';
+import Tdocs from './pages/Tdocs.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,15 +39,19 @@ const router = createBrowserRouter([
         element:<Web/>
       },{
         path:'docr',
-        element:<Docr/>
+        element:<Docr/> 
       },{
         path:'alld',
-        element:<DocumentManager/>
+        element:<Tdocs/>
       },
       {
         path:'upload',
         element:<UploadPage/>
 
+      },
+      {
+        path:'tdocs',
+        element:<Tdocs/>
       },
       {
         path:'profile',
@@ -54,6 +60,9 @@ const router = createBrowserRouter([
         {
           path:'write',
           element:<DocumentEditorPage/>
+        },{
+          path:'persona',
+          element:<PersonaPage/>
         }
       
     ]
