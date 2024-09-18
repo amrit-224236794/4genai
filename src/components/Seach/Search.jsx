@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdAttachFile } from "react-icons/md";
 import { FaRobot, FaRulerCombined, FaListAlt, FaGlobe } from "react-icons/fa";
-import { SiOpenai, SiLlama, SiMistral } from "react-icons/si"; // Model-specific icons
+
 
 function SearchComponent({ search, setSearch, handleInputChange, handleSearch }) {
   const [dropdownOpen, setDropdownOpen] = useState(null);
@@ -29,16 +29,10 @@ function SearchComponent({ search, setSearch, handleInputChange, handleSearch })
   const iconStyle = "text-2xl text-gray-500 cursor-pointer hover:text-blue-500";
   const dropdownStyle = "absolute bg-white shadow-lg rounded-lg p-4 w-64 mt-2 z-10";
 
-  const modelIcons = {
-    "4GenAI": <FaRobot className="mr-2" />,
-    "Mistral": <SiMistral className="mr-2" />,
-    "Llama 70B": <SiLlama className="mr-2" />,
-    "GPT 3.5": <SiOpenai className="mr-2" />,
-    "GPT 4.0": <SiOpenai className="mr-2" />,
-  };
+
 
   return (
-    <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-between rounded-3xl p-6 bg-white shadow-lg">
+    <div className="w-full animated-border max-w-4xl mx-auto flex flex-col items-center justify-between rounded-3xl p-6 bg-white shadow-lg">
       {/* Search Bar */}
       <div className="relative flex items-center mb-6 w-full">
         <div className="absolute left-3 flex items-center">
@@ -97,7 +91,7 @@ function SearchComponent({ search, setSearch, handleInputChange, handleSearch })
                       selectedOptions.model === model && "bg-blue-100 text-blue-600"
                     }`}
                   >
-                    {modelIcons[model]} {model}
+               
                   </li>
                 ))}
               </ul>
