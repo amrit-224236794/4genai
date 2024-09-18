@@ -18,6 +18,7 @@ import UploadPage from './pages/UploadPage.jsx';
 import PersonaPage from './pages/PersonaPage.jsx';
 import Tdocs from './pages/Tdocs.jsx';
 import DropdownBar from './pages/DropdownBar.jsx';
+import LandingPage from './pages/Landing.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     path:'/test',
     element:<Test/>
   },
+  {
+    path:'/landing',
+    element:<LandingPage/>
+  }
   
 
 ]);
