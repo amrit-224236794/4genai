@@ -95,7 +95,7 @@ const ChatWithPDFPage = () => {
             </button>
           </div>
           {/* PDF content placeholder */}
-          <div className="h-full flex items-center justify-center border rounded flex-grow">
+          <div className="h-full flex items-center justify-center  rounded flex-grow">
             <span className="text-gray-500">Chat goes here</span>
           </div>
           {/* Move Search Component to the bottom of the PDF section */}
