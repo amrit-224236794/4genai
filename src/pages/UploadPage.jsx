@@ -53,7 +53,7 @@ const UploadPage = () => {
       {loading ? (
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="relative w-64 h-4 bg-gray-200 rounded-full overflow-hidden">
-            <div className="absolute top-0 left-0 h-full bg-[#22808D] animate-fill"></div>
+            <div className="absolute top-0 left-0 h-full bg-[#0957D0] animate-fill"></div>
           </div>
           <p className="text-gray-700">Uploading your file...</p>
         </div>
@@ -71,7 +71,7 @@ const UploadPage = () => {
             <AiOutlineCloudUpload className="text-6xl text-gray-500 mb-4" />
             <p className="text-gray-700 mb-4">Drag and drop your PDF file here, or click below to select one</p>
             <input type="file" accept=".pdf" onChange={handleChange} className="hidden" id="fileInput" />
-            <label htmlFor="fileInput" className="cursor-pointer bg-[#22808D] text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#14343B] transition-colors">
+            <label htmlFor="fileInput" className="cursor-pointer bg-[#0957D0] text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#14343B] transition-colors">
               Select PDF
             </label>
             {file && (

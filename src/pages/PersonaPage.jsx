@@ -74,7 +74,7 @@ const PersonaPage = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-8">No Personas Created</h2>
           <button
             onClick={() => document.getElementById('optionsSection').scrollIntoView({ behavior: 'smooth' })}
-            className="bg-[#22808D] text-white px-6 py-3 rounded-lg hover:bg-[#1b6775] transition"
+            className="bg-[#0957D0] text-white px-6 py-3 rounded-lg hover:bg-[#1b6775] transition"
           >
             Create Your First Persona
           </button>
@@ -87,7 +87,7 @@ const PersonaPage = () => {
               <li
                 key={index}
                 className={`flex justify-between items-center p-4 border rounded-lg mb-4 shadow-md cursor-pointer ${
-                  editingPersonaIndex === index ? 'bg-[#22808D] text-white' : 'bg-white text-gray-800 hover:shadow-lg'
+                  editingPersonaIndex === index ? 'bg-[#0957D0] text-white' : 'bg-white text-gray-800 hover:shadow-lg'
                 }`}
                 onClick={() => handlePersonaClick(index)}
               >
@@ -106,7 +106,7 @@ const PersonaPage = () => {
 
       {/* Options Section */}
       <div id="optionsSection" className="flex-1">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-full min-w-3xl">
           <h3 className="text-2xl font-semibold mb-6">
             {personas.length === 0 ? 'Create Your First Persona' : 'Create or Edit Persona'}
           </h3>
@@ -130,14 +130,14 @@ const PersonaPage = () => {
             />
           </div>
 
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <h4 className="text-lg font-medium mb-3">Select Model</h4>
             <div className="flex flex-wrap gap-3">
               {models.map((model) => (
                 <button
                   key={model}
                   className={`px-4 py-2 border rounded-lg text-gray-700 transition ${
-                    selectedModel === model ? 'bg-[#22808D] text-white' : 'hover:bg-gray-100'
+                    selectedModel === model ? 'bg-[#0957D0] text-white' : 'hover:bg-gray-100'
                   }`}
                   onClick={() => setSelectedModel(model)}
                 >
@@ -145,7 +145,7 @@ const PersonaPage = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="mb-6">
             <h4 className="text-lg font-medium mb-3">Select Sources</h4>
@@ -154,7 +154,7 @@ const PersonaPage = () => {
                 <button
                   key={source}
                   className={`px-4 py-2 border rounded-lg text-gray-700 transition ${
-                    selectedSources === source ? 'bg-[#22808D] text-white' : 'hover:bg-gray-100'
+                    selectedSources === source ? 'bg-[#0957D0] text-white' : 'hover:bg-gray-100'
                   }`}
                   onClick={() => setSelectedSources(source)}
                 >
@@ -171,7 +171,7 @@ const PersonaPage = () => {
                 <button
                   key={length}
                   className={`px-4 py-2 border rounded-lg text-gray-700 transition ${
-                    selectedLength === length ? 'bg-[#22808D] text-white' : 'hover:bg-gray-100'
+                    selectedLength === length ? 'bg-[#0957D0] text-white' : 'hover:bg-gray-100'
                   }`}
                   onClick={() => setSelectedLength(length)}
                 >
@@ -188,7 +188,7 @@ const PersonaPage = () => {
                 <button
                   key={type}
                   className={`px-4 py-2 border rounded-lg text-gray-700 transition ${
-                    selectedResponseType === type ? 'bg-[#22808D] text-white' : 'hover:bg-gray-100'
+                    selectedResponseType === type ? 'bg-[#0957D0] text-white' : 'hover:bg-gray-100'
                   }`}
                   onClick={() => setSelectedResponseType(type)}
                 >
@@ -200,7 +200,7 @@ const PersonaPage = () => {
 
           <button
             onClick={handleCreateOrUpdatePersona}
-            className="bg-[#22808D] text-white px-6 py-3 rounded-lg hover:bg-[#1b6775] transition w-full text-lg"
+            className="bg-[#0957D0] text-white px-6 py-3 rounded-lg hover:bg-[#1b6775] transition w-full text-lg"
           >
             {editingPersonaIndex !== null ? 'Update Persona' : 'Create Persona'}
           </button>

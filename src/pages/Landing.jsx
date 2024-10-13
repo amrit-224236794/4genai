@@ -30,25 +30,25 @@ export default function LandingPage() {
     //   {/* Navbar */}
     //   <header className="fixed top-0 w-full bg-white shadow-lg z-50 transition duration-500 ease-in-out">
     //     <nav className="container mx-auto p-4 flex justify-between items-center">
-    //       <a href="/" className="text-2xl font-bold text-[#22808D]">GenAI</a>
+    //       <a href="/" className="text-2xl font-bold text-[#0957D0]">GenAI</a>
     //       <ul className="flex space-x-6">
-    //         <li><a href="#demos" className="hover:text-[#22808D] transition-colors duration-300">Demos</a></li>
-    //         <li><a href="#pricing" className="hover:text-[#22808D] transition-colors duration-300">Pricing</a></li>
-    //         <li><a href="#contact" className="hover:text-[#22808D] transition-colors duration-300">Contact</a></li>
+    //         <li><a href="#demos" className="hover:text-[#0957D0] transition-colors duration-300">Demos</a></li>
+    //         <li><a href="#pricing" className="hover:text-[#0957D0] transition-colors duration-300">Pricing</a></li>
+    //         <li><a href="#contact" className="hover:text-[#0957D0] transition-colors duration-300">Contact</a></li>
     //       </ul>
     //     </nav>
     //   </header>
 
     //   {/* Parallax Carousel */}
     //   <section 
-    //     className="h-screen relative bg-fixed bg-center bg-cover bg-[#22808D]"
+    //     className="h-screen relative bg-fixed bg-center bg-cover bg-[#0957D0]"
     //     style={{ backgroundImage: "url('https://via.placeholder.com/1500')" }}
     //   >
-    //     <div className="absolute inset-0 bg-[#22808D] opacity-75"></div>
+    //     <div className="absolute inset-0 bg-[#0957D0] opacity-75"></div>
     //     <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white space-y-4 animate-fadeIn">
     //       <h1 className="text-6xl font-bold animate-slideUp">Next-Gen AI Solutions</h1>
     //       <p className="text-xl">Experience AI like never before</p>
-    //       <button className="px-6 py-3 bg-white text-[#22808D] font-semibold rounded-lg shadow-lg hover:bg-[#22808D] hover:text-white transition duration-500 ease-in-out">
+    //       <button className="px-6 py-3 bg-white text-[#0957D0] font-semibold rounded-lg shadow-lg hover:bg-[#0957D0] hover:text-white transition duration-500 ease-in-out">
     //         Get Started
     //       </button>
     //     </div>
@@ -72,7 +72,7 @@ export default function LandingPage() {
     //             />
     //           </div>
     //           <div className="w-1/2 p-8">
-    //             <h2 className="text-4xl font-bold mb-4 text-[#22808D]">{demo.title}</h2>
+    //             <h2 className="text-4xl font-bold mb-4 text-[#0957D0]">{demo.title}</h2>
     //             <p className="text-lg text-gray-700">{demo.desc}</p>
     //           </div>
     //         </div>
@@ -81,14 +81,14 @@ export default function LandingPage() {
     //   </section>
 
     //   {/* Pricing and Plans */}
-    //   <section id="pricing" className="py-16 bg-[#22808D] text-white">
+    //   <section id="pricing" className="py-16 bg-[#0957D0] text-white">
     //     <div className="container mx-auto">
     //       <h2 className="text-4xl font-bold text-center mb-12">Pricing Plans</h2>
     //       <div className="flex justify-center space-x-8">
     //         {pricingPlans.map((plan) => (
     //           <div
     //             key={plan.title}
-    //             className="bg-white text-[#22808D] shadow-lg rounded-lg p-8 w-1/3 transform transition-transform duration-500 hover:scale-105 hover:bg-[#22808D] hover:text-white"
+    //             className="bg-white text-[#0957D0] shadow-lg rounded-lg p-8 w-1/3 transform transition-transform duration-500 hover:scale-105 hover:bg-[#0957D0] hover:text-white"
     //           >
     //             <h3 className="text-2xl font-bold mb-4">{plan.title}</h3>
     //             <p className="text-4xl font-semibold mb-6">{plan.price}</p>
@@ -100,7 +100,7 @@ export default function LandingPage() {
     //                 </li>
     //               ))}
     //             </ul>
-    //             <button className="w-full px-4 py-2 bg-[#22808D] text-white font-semibold rounded-lg hover:bg-white hover:text-[#22808D] transition duration-500 ease-in-out">
+    //             <button className="w-full px-4 py-2 bg-[#0957D0] text-white font-semibold rounded-lg hover:bg-white hover:text-[#0957D0] transition duration-500 ease-in-out">
     //               Select Plan
     //             </button>
     //           </div>
@@ -128,7 +128,7 @@ export default function LandingPage() {
       <div class="flex lg:flex-1">
         <a href="#" class="-m-1.5 p-1.5">
           <span class="sr-only">Your Company</span>
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
+          <img class="h-12 w-auto" src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png" alt=""/>
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -138,6 +138,13 @@ export default function LandingPage() {
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
+      </div>
+    
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
@@ -149,6 +156,8 @@ export default function LandingPage() {
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
       </div>
     </nav>
+
+    
  <div class="lg:hidden" role="dialog" aria-modal="true">
      
       <div class="fixed inset-0 z-50"></div>
@@ -182,27 +191,29 @@ export default function LandingPage() {
     </div>
   </header>
 
-  <div class="relative isolate px-6 pt-14 lg:px-8">
+  <div class="relative isolate px-6 pt-10 lg:px-8">
     <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" ></div>
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" ></div>
     </div>
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div class="mx-auto max-w-4xl py-32 sm:py-48 lg:py-52">
       <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+        {/* <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
           Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-        </div>
+        </div> */}
       </div>
+      
       <div class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Data to enrich your online business</h1>
-        <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+   
+        <h1 class="mt-12 text-4xl font-bold text-gray-900 sm:text-6xl tracking-normal">Intelligence of the world’s best AI LLMs combined into one! </h1>
+        <p class="mt-7 text-3xl leading-8 tracking-normal text-gray-600">Chat with your documents, search the web like never before, prepare world class documents & content – all using the best AI models</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+          <a href="#" class="rounded-2xl text-lg bg-black px-7 py-4 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Try our super LLM for free!</a>
+          
         </div>
       </div>
     </div>
     <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" ></div>
+      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" ></div>
     </div>
   </div>
 </div>

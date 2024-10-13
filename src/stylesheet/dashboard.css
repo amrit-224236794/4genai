@@ -11,7 +11,7 @@
     position: relative;
     border: 2px solid transparent;
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(to top, #22808D, transparent) border-box;
+                linear-gradient(to top, #0957D0, transparent) border-box;
     background-size: 100% 200%;
     animation: borderAnimation 5s linear infinite;
     border-radius: 1rem; 

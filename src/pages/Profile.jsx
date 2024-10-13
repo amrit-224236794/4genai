@@ -21,24 +21,24 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex ml-4 w-full min-h-screen bg-gray-100">
+    <div className="flex ml-4 w-full min-h-screen bg-white">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-lg">
+      <aside className="w-64 bg-[#F5F5F5] shadow-lg">
         <div className="p-6">
           <h2 className="text-xl font-semibold text-gray-800">Profile Settings</h2>
         </div>
         <nav className="flex flex-col">
-          <button className={`flex items-center p-4 hover:bg-gray-200 ${activeTab === 'profile' ? 'bg-gray-200' : ''}`} onClick={() => setActiveTab('profile')}>
-            <FaUser className="mr-3 text-gray-600" /> Profile
+          <button className={`flex items-center p-4 rounded-2xl  hover:bg-[#E8E9EA] ${activeTab === 'profile' ? 'bg-[#E8E9EA] text-[#0957D0]' : ''}`} onClick={() => setActiveTab('profile')}>
+            <FaUser className="mr-3 text-black" /> Profile
           </button>
-          <button className={`flex items-center p-4 hover:bg-gray-200 ${activeTab === 'account' ? 'bg-gray-200' : ''}`} onClick={() => setActiveTab('account')}>
-            <FaLock className="mr-3 text-gray-600" /> Account
+          <button className={`flex items-center p-4 rounded-2xl  hover:bg-[#E8E9EA] ${activeTab === 'account' ? 'bg-[#E8E9EA]] text-[#0957D0]' : ''}`} onClick={() => setActiveTab('account')}>
+            <FaLock className="mr-3 text-black" /> Account
           </button>
-          <button className={`flex items-center p-4 hover:bg-gray-200 ${activeTab === 'invoices' ? 'bg-gray-200' : ''}`} onClick={() => setActiveTab('invoices')}>
-            <FaFileInvoice className="mr-3 text-gray-600" /> Invoices
+          <button className={`flex items-center p-4 rounded-2xl  hover:bg-[#E8E9EA] ${activeTab === 'invoices' ? 'bg-[#E8E9EA]] text-[#0957D0]' : ''}`} onClick={() => setActiveTab('invoices')}>
+            <FaFileInvoice className="mr-3 text-black" /> Invoices
           </button>
-          <button className={`flex items-center p-4 hover:bg-gray-200 ${activeTab === 'documents' ? 'bg-gray-200' : ''}`} onClick={() => setActiveTab('documents')}>
-            <FaFolderOpen className="mr-3 text-gray-600" /> Shared Documents
+          <button className={`flex items-center p-4 rounded-2xl  hover:bg-[#E8E9EA] ${activeTab === 'documents' ? 'bg-[#E8E9EA]] text-[#0957D0]' : ''}`} onClick={() => setActiveTab('documents')}>
+            <FaFolderOpen className="mr-3 text-black" /> Shared Documents
           </button>
         </nav>
       </aside>
@@ -57,7 +57,7 @@ const Profile = () => {
               </h2>
               <p className="text-lg text-gray-600">{profession}</p>
               <p className="text-md text-gray-500">{email}</p>
-              <button className="mt-4 px-4 py-2 bg-[#22808D] text-white font-medium rounded-md hover:bg-[#1a6a68] transition duration-200 flex items-center">
+              <button className="mt-4 px-4 py-2 bg-[#0957D0] text-white font-medium rounded-md hover:bg-[#1a6a68] transition duration-200 flex items-center">
                 <FaEdit className="mr-2" /> Edit Profile
               </button>
             </div>
@@ -77,11 +77,11 @@ const Profile = () => {
               <h3 className="text-2xl font-semibold text-gray-800">Account Settings</h3>
               <div className="flex justify-between mt-4">
                 <p className="text-md text-gray-600">Current Plan: <strong>{currentPlan}</strong></p>
-                <button onClick={handleUpgradePlan} className="px-4 py-2 bg-[#22808D] text-white rounded-md hover:bg-[#1a6a68] transition duration-200 flex items-center">
+                <button onClick={handleUpgradePlan} className="px-4 py-2 bg-[#0957D0] text-white rounded-md hover:bg-[#1a6a68] transition duration-200 flex items-center">
                   Upgrade Plan <FaArrowRight className="ml-2" />
                 </button>
               </div>
-              <button onClick={handleResetPassword} className="mt-4 px-4 py-2 bg-[#22808D] text-white rounded-md hover:bg-[#1a6a68] transition duration-200">
+              <button onClick={handleResetPassword} className="mt-4 px-4 py-2 bg-[#0957D0] text-white rounded-md hover:bg-[#1a6a68] transition duration-200">
                 Reset Password
               </button>
             </div>

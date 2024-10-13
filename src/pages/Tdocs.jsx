@@ -1,200 +1,127 @@
 import React, { useState } from 'react';
-import { FaFolder, FaFileAlt, FaPlus, FaTrash } from 'react-icons/fa';
-import { HiOutlineDocumentAdd } from 'react-icons/hi';
-import { RiChatSmile3Fill } from 'react-icons/ri';
-import { useNavigate } from 'react-router-dom';
+import { FaPlus, FaFilePdf, FaEllipsisV, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Tdocs = () => {
   const [folders, setFolders] = useState([
-    { id: 1, name: 'Default Folder', documents: ['Doc1', 'Doc2'], subfolders: [] }
+    { id: 1, name: 'Default Folder', documents: [
+      { name: 'Student Athlete Resume.Pdf', size: '94.24 KB', dateCreated: '4 months ago' }
+    ] }
   ]);
-  const [selectedFolder, setSelectedFolder] = useState(folders[0].id);
+  const [expandedFolderId, setExpandedFolderId] = useState(null);
   const [newFolderName, setNewFolderName] = useState('');
-  const [dragging, setDragging] = useState(false);
+  const [newDocumentName, setNewDocumentName] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const addFolder = (parentFolderId = null) => {
-    const newFolder = {
-      id: folders.length + 1,
-      name: newFolderName,
-      documents: [],
-      subfolders: []
-    };
-    
-    if (parentFolderId) {
-      setFolders(prevFolders =>
-        prevFolders.map(folder =>
-          folder.id === parentFolderId
-            ? { ...folder, subfolders: [...folder.subfolders, newFolder] }
-            : folder
-        )
-      );
-    } else {
-      setFolders([...folders, newFolder]); // Add at the root level
+  const addFolder = () => {
+    if (newFolderName) {
+      setFolders([...folders, { id: folders.length + 1, name: newFolderName, documents: [] }]);
+      setNewFolderName('');
     }
-    setNewFolderName('');
   };
 
-  const deleteFolder = (folderId) => {
-    const updatedFolders = folders.filter(folder => folder.id !== folderId);
-    setFolders(updatedFolders);
+  const toggleFolder = (folderId) => {
+    setExpandedFolderId(expandedFolderId === folderId ? null : folderId);
   };
 
-  const moveDocument = (doc, targetFolderId) => {
-    setFolders(prevFolders =>
-      prevFolders.map(folder => {
-        if (folder.id === selectedFolder) {
-          return {
-            ...folder,
-            documents: folder.documents.filter(d => d !== doc)
-          };
-        } else if (folder.id === targetFolderId) {
-          return { ...folder, documents: [...folder.documents, doc] };
-        }
-        return folder;
-      })
-    );
-  };
-
-  const navigate = useNavigate();
-
-  const handleDragEnter = (e) => {
-    e.preventDefault();
-    setDragging(true);
-  };
-
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    setDragging(false);
-  };
-
-  const handleDrop = (e, folderId) => {
-    e.preventDefault();
-    const fileName = e.dataTransfer.files[0].name;
-    setFolders(prevFolders =>
-      prevFolders.map(folder =>
-        folder.id === folderId
-          ? { ...folder, documents: [...folder.documents, fileName] }
-          : folder
-      )
-    );
-    setDragging(false);
-  };
+  const filteredFolders = folders.filter(folder =>
+    folder.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    folder.documents.some(doc => doc.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
-    <div className="document-manager flex w-full h-screen">
-      {/* Folder Sidebar */}
-      <div className="folders w-1/2 h-full  p-6 flex flex-col">
-        <h2 className="text-2xl font-semibold flex items-center gap-2 text-gray-700 mb-6">
-          <FaFolder /> Folders
-        </h2>
-        <div className="flex-grow overflow-y-auto">
-          <ul className="space-y-4">
-            {folders.map(folder => (
-              <li key={folder.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
-                <span
-                  className="flex items-center gap-3 text-lg cursor-pointer"
-                  onClick={() => setSelectedFolder(folder.id)}
-                >
-                  <FaFolder className="text-[#1a6974]" /> {folder.name}
-                </span>
-                <div className="flex gap-3">
-                  <button className="text-red-500 hover:text-red-700" onClick={() => deleteFolder(folder.id)}>
-                    <FaTrash />
-                  </button>
-                  <button
-                    className="text-[#22808D] hover:text-[#1a6974]"
-                    onClick={() => navigate('/docr')}
-                  >
-                    <RiChatSmile3Fill />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+    <div className="min-h-screen w-full flex flex-col p-6">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div>
+          <h1 className="text-3xl font-semibold text-gray-900">Document Library</h1>
+          <p className="text-gray-500">View all your uploaded documents here</p>
         </div>
-        <div className="mt-6 flex gap-2">
+        <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <input
             type="text"
+            placeholder="Folder Name"
             value={newFolderName}
             onChange={(e) => setNewFolderName(e.target.value)}
-            placeholder="New folder name"
-            className="p-3 rounded-md border border-gray-300 w-full"
+            className="border rounded p-2 w-64 shadow-sm"
           />
-          <button
-            className="bg-[#22808D] text-white p-3 rounded-md hover:bg-[#1a6974] flex items-center"
-            onClick={() => addFolder(null)}
-          >
-            <FaPlus />
+          <button onClick={addFolder} className="bg-white border px-4 py-2 rounded-lg flex items-center shadow-sm hover:shadow-md transition">
+            Create folder
+          </button>
+          <button className="bg-black text-white px-4 py-2 rounded-lg flex items-center shadow-lg hover:bg-gray-800 transition">
+            <FaPlus className="mr-2" /> Upload
           </button>
         </div>
+      </header>
+      
+      <div className="flex items-center space-x-4 mb-4">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border rounded p-2 w-64 shadow-sm"
+        />
+        <select className="border rounded p-2 shadow-sm">
+          <option>All Folders</option>
+          {folders.map(folder => (
+            <option key={folder.id}>{folder.name}</option>
+          ))}
+        </select>
+        <select className="border rounded p-2 shadow-sm">
+          <option>File type</option>
+          <option>PDF</option>
+          <option>Word Document</option>
+        </select>
+        <select className="border rounded p-2 shadow-sm">
+          <option>Date range</option>
+          <option>Last 7 days</option>
+          <option>Last 30 days</option>
+        </select>
       </div>
 
-      {/* Document List and Folder Contents */}
-      <div className="documents w-1/2 h-full  p-6 flex flex-col">
-        <h2 className="text-2xl font-semibold flex items-center gap-2 text-gray-700 mb-6">
-          <FaFileAlt /> Documents & Subfolders
-        </h2>
-        <div className="flex-grow overflow-y-auto">
-          <ul className="space-y-4">
-            {folders.find(f => f.id === selectedFolder)?.subfolders.map(subfolder => (
-              <li key={subfolder.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
-                <span
-                  className="flex items-center gap-3 text-lg cursor-pointer"
-                  onClick={() => setSelectedFolder(subfolder.id)}
-                >
-                  <FaFolder className="text-[#1a6974]" /> {subfolder.name}
-                </span>
-                <div className="flex gap-3">
-                  <button className="text-red-500 hover:text-red-700" onClick={() => deleteFolder(subfolder.id)}>
-                    <FaTrash />
-                  </button>
-                  <button
-                    className="text-green-500 hover:text-green-700"
-                    onClick={() => addFolder(subfolder.id)}
-                  >
-                    <RiChatSmile3Fill /> Chat
-                  </button>
+      <main className="flex-1">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          {filteredFolders.map(folder => (
+            <div key={folder.id} className="mb-4">
+              <div className="flex justify-between items-center p-4 bg-gray-100 cursor-pointer" onClick={() => toggleFolder(folder.id)}>
+                <div className="flex items-center">
+                  {expandedFolderId === folder.id ? <FaChevronUp /> : <FaChevronDown />}
+                  <span className="ml-2 font-semibold text-gray-900">{folder.name}</span>
                 </div>
-              </li>
-            ))}
-          </ul>
-
-          {/* Documents */}
-          <ul className="mt-6 space-y-4">
-            {folders.find(f => f.id === selectedFolder)?.documents.map(doc => (
-              <li key={doc} className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
-                <span className="flex items-center gap-3 text-lg">
-                  <HiOutlineDocumentAdd className="text-blue-500" /> {doc}
-                </span>
-                <div className="flex gap-3">
-                  <select
-                    className="border rounded-md p-2"
-                    onChange={(e) => moveDocument(doc, parseInt(e.target.value))}
-                  >
-                    <option value="">Move to...</option>
-                    {folders.map(folder => (
-                      <option key={folder.id} value={folder.id}>{folder.name}</option>
-                    ))}
-                  </select>
+              </div>
+              {expandedFolderId === folder.id && (
+                <div>
+                  <div className="flex justify-between items-center p-4 bg-gray-50">
+                    <span className="font-semibold">File Name</span>
+                    <span className="font-semibold">Size</span>
+                    <span className="font-semibold">Date Created</span>
+                    <span className="font-semibold"></span>
+                  </div>
+                  {folder.documents.length > 0 ? (
+                    folder.documents.map((doc, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between items-center p-4 border-t border-gray-200"
+                      >
+                        <div className="flex items-center">
+                          <FaFilePdf className="text-red-600 mr-2" />
+                          <span className="text-gray-900">{doc.name}</span>
+                        </div>
+                        <span className="text-gray-700">{doc.size}</span>
+                        <span className="text-gray-700">{doc.dateCreated}</span>
+                        <button className="text-gray-600 hover:text-gray-800">
+                          <FaEllipsisV />
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-4 text-gray-500">No documents available in this folder.</div>
+                  )}
                 </div>
-              </li>
-            ))}
-          </ul>
+              )}
+            </div>
+          ))}
         </div>
-
-        {/* Drag and Drop File Upload */}
-        <div
-          className={`mt-6 p-6 border-2 ${dragging ? 'border-green-500' : 'border-gray-300'} rounded-lg`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => handleDrop(e, selectedFolder)}
-        >
-          <p className="text-center text-gray-600">
-            {dragging ? 'Drop your file here' : 'Drag & Drop files here'}
-          </p>
-        </div>
-      </div>
+      </main>
     </div>
   );
 };

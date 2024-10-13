@@ -3,34 +3,38 @@ import React, { useState } from 'react';
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlineDocumentScanner } from "react-icons/md";
 import { TfiWrite } from "react-icons/tfi";
-import SearchComponent from "../components/Seach/Search"
+import { FiSearch } from "react-icons/fi"; // Example icon for search
+import { AiOutlineCalendar } from "react-icons/ai"; // Example icon for upcoming events
+import { FaLightbulb } from "react-icons/fa"; // Example icon for ideas
+import { BiSave } from "react-icons/bi"; // Example icon for tax saving
+import SearchComponent from "../components/Seach/Search";
 import '../stylesheet/dashboard.css';
 
 function Dashboard() {
   const [lists] = useState([
-    { id: 4, title: 'Web', content: '', icon: <TbWorldWww /> },
-    { id: 5, title: 'Chat with Documents', content: '', icon: <MdOutlineDocumentScanner /> },
-    { id: 6, title: 'Write', content: '', icon: <TfiWrite /> }
+    { id: 4, title: 'Web', content: '', icon: <TbWorldWww className="text-lg" /> },
+    { id: 5, title: 'Chat with Documents', content: '', icon: <MdOutlineDocumentScanner className="text-lg" /> },
+    { id: 6, title: 'Write', content: '', icon: <TfiWrite className="text-lg" /> }
   ]);
 
   const [activeTab, setActiveTab] = useState(4); // Set default tab to 'Web'
   const [search, setSearch] = useState('');
-  const [suggestions, setSuggestions] = useState(['4Gen.AI?', 'Upcoming Fests', 'What is Gen AI?', 'Tax saving Idea']);
+  
+  // Updated suggestions with icons
+  const suggestions = [
+    { text: '4Gen.AI?', icon: <FiSearch className="inline text-lg" /> },
+    { text: 'Upcoming Fests', icon: <AiOutlineCalendar className="inline text-lg" /> },
+    { text: 'What is Gen AI?', icon: <FaLightbulb className="inline text-lg" /> },
+    { text: 'Tax Saving Idea', icon: <BiSave className="inline text-lg" /> }
+  ];
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearch(value);
-
-    if (value) {
-      setSuggestions(['Market size of longevity technology', 'Upcoming Fests', 'What is Gen AI?', 'Tax saving Idea'].filter(s => s.toLowerCase().includes(value.toLowerCase())));
-    } else {
-      setSuggestions(['Market size of longevity technology', 'Upcoming Fests', 'What is Gen AI?', 'Tax saving Idea']);
-    }
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearch(suggestion);
-    setSuggestions([]);
+    setSearch(suggestion.text);
   };
 
   const handleSearch = () => {
@@ -143,22 +147,28 @@ function Dashboard() {
         return null;
     }
   };
+ 
 
   return (
     <>
-      <div className="mt-36">
-        <div className="mx-auto text-center">
-          <h1 className="text-3xl font-semibold text-[#14343B]">For Everything Gen AI</h1>
+      <div  className="mt-16">
+        <div className='flex items-center justify-center'>
+        <img src="https://i.postimg.cc/Cd3RyzfQ/collapse.png" alt="" className='w-20' />
+        </div>
+        <div className="mx-auto text-center flex items-center justify-center">
+
+          <h1 className="text-3xl font-semibold text-[#14343B]">4 Everything Gen AI</h1>
         </div>
         <div className="container mx-auto p-4 mt-5">
           <div className="flex justify-center space-x-2 mb-6">
             {lists.map(list => (
               <div
                 key={list.id}
-                className={`cursor-pointer px-4 py-2 rounded-2xl flex items-center space-x-2 hover:cursor-pointer hover:bg-[#22808D] hover:text-white ${activeTab === list.id ? 'bg-[#22808D] text-white' : 'bg-gray-100'}`}
+                className={`cursor-pointer px-4 py-2 rounded-2xl flex items-center space-x-2 hover:cursor-pointer hover:bg-black hover:text-white ${activeTab === list.id ? 'bg-black text-white' : 'bg-gray-100'}`}
                 onClick={() => setActiveTab(list.id)}
               >
-                {list.icon && list.icon}
+                {/* Icon on the left */}
+                {list.icon}
                 <span>{list.title}</span>
               </div>
             ))}
@@ -172,11 +182,25 @@ function Dashboard() {
           handleInputChange={handleInputChange}
           handleSearch={handleSearch}
           renderDropdowns={renderDropdowns}
-          suggestions={suggestions}
-          handleSuggestionClick={handleSuggestionClick}
         />
+        
+        {/* Suggestions Container */}
+        <div className="container mx-auto p-4">
+          <div className="grid grid-cols-2 gap-4">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className="  border border-[] rounded-2xl p-4 cursor-pointer hover:bg-gray-100 hover:text-black transition flex items-center space-x-2"
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {/* Icon for each suggestion */}
+                {suggestion.icon}
+                <span>{suggestion.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      
     </>
   );
 }

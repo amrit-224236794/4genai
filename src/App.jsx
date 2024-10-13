@@ -4,7 +4,14 @@ import Footer from './components/footer/Footer';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './components/sidebar/Sidebar';
 
+
 function App() {
+  const backgroundStyle = {
+    backgroundImage: `url('https://i.ibb.co/MCqjGzV/istockphoto-1776689269-1024x10')`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  };
   return (
     <div className="relative flex h-screen">
       {/* Sidebar */}
@@ -21,7 +28,7 @@ function App() {
 
           {/* Background Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center bg-[#FCFCF9] bg-no-repeat opacity-10"
+            className="absolute inset-0 bg-cover bg-center bg-[#FFFFFF] bg-no-repeat opacity-10"
             style={{
               backgroundImage: "url('')",
             }}
@@ -34,7 +41,8 @@ function App() {
             </div>
 
             {/* Page Content */}
-            <div className="flex-1 flex justify-center items-start pt-4 pb-4">
+            <div style={backgroundStyle} className="flex-1 flex justify-center items-start pt-4 pb-4">
+              
               <Outlet />
             </div>
           </div>

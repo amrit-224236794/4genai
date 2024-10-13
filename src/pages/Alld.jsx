@@ -80,7 +80,7 @@ const DocumentManager = () => {
             onChange={(e) => setNewFolderName(e.target.value)}
             className="border rounded p-2 w-64 shadow-sm"
           />
-          <button onClick={addFolder} className="bg-[#22808D] text-white px-4 py-2 rounded-lg flex items-center shadow-lg hover:bg-[#1d6c6b] transition">
+          <button onClick={addFolder} className="bg-[#0957D0] text-white px-4 py-2 rounded-lg flex items-center shadow-lg hover:bg-[#1d6c6b] transition">
             <FaPlus className="mr-2" /> Add New
           </button>
         </div>
@@ -92,7 +92,7 @@ const DocumentManager = () => {
             <div key={folder.id} className="bg-white shadow-lg rounded-lg overflow-hidden transition transform hover:scale-105">
               <div className="flex justify-between items-center p-4 cursor-pointer bg-gray-100 hover:bg-gray-200 transition" onClick={() => toggleFolder(folder.id)}>
                 <div className="flex items-center">
-                  <FaFolder className="mr-2 text-[#22808D]" />
+                  <FaFolder className="mr-2 text-[#0957D0]" />
                   <span className="text-lg font-semibold text-gray-900">{folder.name}</span>
                 </div>
                 {expandedFolderId === folder.id ? <FaChevronUp /> : <FaChevronDown />}

@@ -46,29 +46,30 @@ useEffect(() => {
     <div className="flex mt-10 w-full">
       {/* Right side: Search Bar and Options */}
       <div className="w-1/2 p-4">
+      <h2 className="text-2xl font-semibold mb-4">4 Creative Gen AI</h2>
         {/* Top Options */}
         <div className="relative flex gap-2 mb-4">
   <div
     ref={indicatorRef}
-    className="absolute bottom-0 h-1 bg-[#22808D] transition-all duration-300 ease-in-out"
+    className="absolute bottom-0 h-1 bg-black transition-all duration-300 ease-in-out"
   />
   <button
     ref={optionRefs.compose}
-    className={`p-2 border-b-2 ${selectedOption === 'compose' ? 'text-[#22808D] font-semibold' : 'text-gray-600'}`}
+    className={`p-2 border-b-2 ${selectedOption === 'compose' ? 'text-black font-semibold' : 'text-gray-600'}`}
     onClick={() => handleOptionClick('compose')}
   >
     Compose
   </button>
   <button
     ref={optionRefs.reply}
-    className={`p-2 border-b-2 ${selectedOption === 'reply' ? 'text-[#22808D] font-semibold' : 'text-gray-600'}`}
+    className={`p-2 border-b-2 ${selectedOption === 'reply' ? 'text-black font-semibold' : 'text-gray-600'}`}
     onClick={() => handleOptionClick('reply')}
   >
     Reply
   </button>
   <button
     ref={optionRefs.grammar}
-    className={`p-2 border-b-2 ${selectedOption === 'grammar' ? 'text-[#22808D] font-semibold' : 'text-gray-600'}`}
+    className={`p-2 border-b-2 ${selectedOption === 'grammar' ? 'text-black font-semibold' : 'text-gray-600'}`}
     onClick={() => handleOptionClick('grammar')}
   >
     Grammar
@@ -78,10 +79,10 @@ useEffect(() => {
         {/* Conditional Render based on selectedOption */}
         {selectedOption === 'compose' && (
           <>
-            <h2 className="text-2xl font-semibold mb-4">Write</h2>
+            <h2 className="text-2xl font-semibold mb-4">Compose</h2>
             <input
               type="text"
-              className="w-full p-3 mb-4 border rounded-md"
+              className="w-full p-3 mb-4 border rounded-2xl"
               placeholder="Ask me anything..."
             />
             {/* Options */}
@@ -91,7 +92,7 @@ useEffect(() => {
                 {['Email', 'Message', 'Comment', 'Paragraph', 'Article', 'Blog post', 'Ideas', 'Outline', 'Social media post'].map((option) => (
                   <button
                     key={option}
-                    className={`p-2 border rounded-md ${selectedButtons.write === option ? 'bg-[#22808D] text-white' : ''}`}
+                    className={`p-2 border rounded-xl ${selectedButtons.write === option ? 'bg-[#dde5f0] text-[#0957D0]' : ''}`}
                     onClick={() => handleButtonClick('write', option)}
                   >
                     {option}
@@ -105,7 +106,7 @@ useEffect(() => {
                 {['Default', 'Amicable', 'Casual', 'Friendly', 'Professional', 'Witty', 'Funny', 'Formal'].map((option) => (
                   <button
                     key={option}
-                    className={`p-2 border rounded-md ${selectedButtons.tone === option ? 'bg-[#22808D] text-white' : ''}`}
+                    className={`p-2 border rounded-xl ${selectedButtons.tone === option ? 'bg-[#dde5f0] text-[#0957D0]' : ''}`}
                     onClick={() => handleButtonClick('tone', option)}
                   >
                     {option}
@@ -119,7 +120,7 @@ useEffect(() => {
                 {['Short', 'Medium', 'Large'].map((option) => (
                   <button
                     key={option}
-                    className={`p-2 border rounded-md ${selectedButtons.length === option ? 'bg-[#22808D] text-white' : ''}`}
+                    className={`p-2 border rounded-xl ${selectedButtons.length === option ? 'bg-[#dde5f0] text-[#0957D0]' : ''}`}
                     onClick={() => handleButtonClick('length', option)}
                   >
                     {option}
@@ -133,7 +134,7 @@ useEffect(() => {
                 {['Persona 1', 'Persona 2', 'Persona 3'].map((option) => (
                   <button
                     key={option}
-                    className={`p-2 border rounded-md ${selectedButtons.persona === option ? 'bg-[#22808D] text-white' : ''}`}
+                    className={`p-2 border rounded-xl ${selectedButtons.persona === option ? 'bg-[#dde5f0] text-[#0957D0]' : ''}`}
                     onClick={() => handleButtonClick('persona', option)}
                   >
                     {option}
@@ -149,11 +150,11 @@ useEffect(() => {
             <h2 className="text-2xl font-semibold mb-4">Reply</h2>
             <textarea
               
-              className="w-full p-3 h-40 mb-4 border rounded-md"
+              className="w-full p-3 h-40 mb-4 border rounded-3xl"
               placeholder="Original text"
             />
             <textarea
-              className="w-full p-3 h-40 mb-4 border rounded-md"
+              className="w-full p-3 h-40 mb-4 border rounded-3xl"
               placeholder="What to reply"
             />
           </>
@@ -163,7 +164,7 @@ useEffect(() => {
           <>
             <h2 className="text-2xl font-semibold mb-4">Grammar Check</h2>
             <textarea
-              className="w-full p-3 mb-4 border rounded-md h-96"
+              className="w-full p-3 mb-4 border rounded-3xl h-96"
               placeholder="Paste your document text here..."
             ></textarea>
           </>
@@ -171,13 +172,14 @@ useEffect(() => {
       </div>
 
       {/* Left side: Writing Section */}
-      <div className="w-1/2 p-4 bg-white border-r border-gray-300">
-        <h2 className="text-2xl font-semibold mb-4">Preview</h2>
+      <div className="w-1/2 p-4 bg-white border-r rounded-6xl border-gray-300">
+       
         <div
           contentEditable
-          className="h-full p-4 border rounded bg-gray-50"
-          onInput={handleContentChange}
+          className="h-full p-4 border rounded-3xl bg-[#F9FAFB]"
+          onInput={handleContentChange} 
         >
+          Preview
           {content}
         </div>
       </div>

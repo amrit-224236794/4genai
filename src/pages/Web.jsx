@@ -149,7 +149,7 @@ function Web() {
                 {sources.map((source, index) => (
                   <div key={index} className="border p-4 bg-gray-50 rounded-lg shadow-lg relative w-full md:w-1/4">
                     <p className="text-lg font-medium">{source}</p>
-                    <span className="absolute bottom-2 right-2 bg-gray-100 text-[#22808D] p-2 rounded-full text-sm">{index + 1}</span>
+                    <span className="absolute bottom-2 right-2 bg-gray-100 text-[#0957D0] p-2 rounded-full text-sm">{index + 1}</span>
                   </div>
                 ))}
               </div>
@@ -177,7 +177,7 @@ function Web() {
               <img key={index} src={image} alt={`Image ${index + 1}`} className="rounded-lg shadow-lg"/>
             ))}
           </div>
-          <button className="bg-[#22808D] text-white py-2 px-4 rounded-lg flex items-center justify-center hover:bg-[#1d6a7f] transition-colors">
+          <button className="bg-[#0957D0] text-white py-2 px-4 rounded-lg flex items-center justify-center hover:bg-[#1d6a7f] transition-colors">
             <AiOutlinePlus className="mr-2" />
             Generate More
           </button>
