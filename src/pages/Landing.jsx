@@ -146,12 +146,7 @@ export default function LandingPage() {
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
       </div>
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
-      </div>
+      
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -207,7 +202,7 @@ export default function LandingPage() {
         <h1 class="mt-12 text-4xl font-bold text-gray-900 sm:text-6xl tracking-normal">Intelligence of the world’s best AI LLMs combined into one! </h1>
         <p class="mt-7 text-3xl leading-8 tracking-normal text-gray-600">Chat with your documents, search the web like never before, prepare world class documents & content – all using the best AI models</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a href="#" class="rounded-2xl text-lg bg-black px-7 py-4 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Try our super LLM for free!</a>
+          <a href="#" class="rounded-2xl text-lg bg-black px-7 py-4 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Try Our Super LLM for Free!</a>
           
         </div>
       </div>

@@ -18,7 +18,7 @@ const Sidebar = () => {
     { title: "Search", icon: <IoSearchOutline />, path: "/dashboard" },
     { title: "Write", icon: <PiPencilLineThin />, path: "/write" },
     { title: "Summarize", icon: <PiNotebookThin />, path: "/upload" },
-    { title: "Documents", icon: <IoDocumentsOutline />, path: "/alld" },
+    { title: "Documents", icon: <IoDocumentsOutline />, path: "/documents" },
     { title: "Settings", icon: <CiSettings />, path: "/profile" },
     { title: "Accounts", icon: <IoPersonOutline />, path: "/login" },
     { title: "Persona", icon: <MdOutlineBroadcastOnPersonal />, path: "/persona" },

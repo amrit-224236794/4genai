@@ -20,7 +20,7 @@ const UploadPage = () => {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        navigate('/docr', { state: { file } });
+        navigate('/summarize', { state: { file } });
       }, 2000); // Simulate 2 seconds upload time
     } else {
       alert('Please upload a valid PDF file.');

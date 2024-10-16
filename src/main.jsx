@@ -8,15 +8,14 @@ import Dashboard from './pages/Dashboard.jsx';
 import Test from './components/sidebar/Test.jsx'
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
-import Documents from './pages/Documents.jsx';
 import Web from './pages/Web.jsx'
-import Docr from './pages/docr.jsx';
+import ChatWithPDFPage from './pages/summarize.jsx';
 import DocumentManager from './pages/Alld.jsx';
 import DocumentEditorPage from './pages/Write.jsx';
 import Profile from './pages/Profile.jsx';
 import UploadPage from './pages/UploadPage.jsx';
 import PersonaPage from './pages/PersonaPage.jsx';
-import Tdocs from './pages/Tdocs.jsx';
+import Documents from './pages/Documents.jsx';
 import DropdownBar from './pages/DropdownBar.jsx';
 import LandingPage from './pages/Landing.jsx';
 const router = createBrowserRouter([
@@ -33,18 +32,20 @@ const router = createBrowserRouter([
       },{
         path:'signup',
         element:<SignUp/>
-      },{
-        path:'documents',
-        element:<Documents/>
-      },{
+      },
+      // {
+      //   path:'documents',
+      //   element:<Documents/>
+      // },
+      {
         path:'web',
         element:<Web/>
       },{
-        path:'docr',
-        element:<Docr/> 
+        path:'summarize',
+        element:<ChatWithPDFPage/> 
       },{
-        path:'alld',
-        element:<Tdocs/>
+        path:'documents',
+        element:<Documents/>
       },
       {
         path:'upload',
@@ -52,8 +53,8 @@ const router = createBrowserRouter([
 
       },
       {
-        path:'tdocs',
-        element:<Tdocs/>
+        path:'Documents',
+        element:<Documents/>
       },
       {
         path:'profile',
