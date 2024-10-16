@@ -3,7 +3,7 @@ import Nav from './components/nav/Nav';
 import Footer from './components/footer/Footer';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './components/sidebar/Sidebar';
-
+import Genaicontextprovider from './context/Genaicontextprovider';
 
 function App() {
   const backgroundStyle = {
@@ -13,6 +13,7 @@ function App() {
     backgroundPosition: 'center',
   };
   return (
+<Genaicontextprovider>
     <div className="relative flex h-screen">
       {/* Sidebar */}
       <div className="hidden sm:block sticky top-0 h-screen">
@@ -52,6 +53,7 @@ function App() {
         </div>
       </div>
     </div>
+</Genaicontextprovider>
   );
 }
 

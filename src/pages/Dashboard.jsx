@@ -1,5 +1,5 @@
 // Dashboard.jsx
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlineDocumentScanner } from "react-icons/md";
 import { TfiWrite } from "react-icons/tfi";
@@ -9,8 +9,11 @@ import { FaLightbulb } from "react-icons/fa"; // Example icon for ideas
 import { BiSave } from "react-icons/bi"; // Example icon for tax saving
 import SearchComponent from "../components/Seach/Search";
 import '../stylesheet/dashboard.css';
+import Genaicontext from '../context/genaicontext';
 
 function Dashboard() {
+  const{setModel} = useContext(Genaicontext);
+  const{model} = useContext(Genaicontext);
   const [lists] = useState([
     { id: 4, title: 'Web', content: '', icon: <TbWorldWww className="text-lg" /> },
     { id: 5, title: 'Chat with Documents', content: '', icon: <MdOutlineDocumentScanner className="text-lg" /> },
@@ -46,15 +49,15 @@ function Dashboard() {
       case 4:
         return (
           <div className="flex flex-wrap gap-2">
-            <select className="flex-1 border p-2 rounded-md">
-              <option>Model – 4GenAI</option>
+            <select onChange={(e) => { setModel(e.target.value); console.log(e.target.value); }} className="flex-1 border p-2 rounded-md">
+              <option >Model – 4GenAI</option>
               <option>Mistral</option>
               <option>Llama 70B</option>
               <option>Wizard</option>
               <option>GPT 3.5</option>
-              <option>GPT 4.0</option>
+              <option >GPT 4.0</option>
             </select>
-            <select className="flex-1 border p-2 rounded-md">
+            <select onChange={(e) => { setModel(e.target.value); console.log(e.target.value); }} className="flex-1 border p-2 rounded-md">
               <option>Sources – All</option>
               <option>Academic</option>
               <option>Wikipedia</option>
@@ -63,13 +66,13 @@ function Dashboard() {
               <option>Youtube</option>
               <option>Travel</option>
             </select>
-            <select className="flex-1 border p-2 rounded-md">
+            <select onChange={(e) => { setModel(e.target.value); console.log(e.target.value); }} className="flex-1 border p-2 rounded-md">
               <option>Response length – Auto</option>
               <option>short</option>
               <option>medium</option>
               <option>large</option>
             </select>
-            <select className="flex-1 border p-2 rounded-md">
+            <select onChange={(e) => { setModel(e.target.value); console.log(e.target.value); }} className="flex-1 border p-2 rounded-md">
               <option>Response type – Paragraph</option>
               <option>pointers</option>
               <option>summary</option>
@@ -88,7 +91,7 @@ function Dashboard() {
               <option>Llama 70B</option>
               <option>Wizard</option>
               <option>GPT 3.5</option>
-              <option>GPT 4.0</option>
+              <option >GPT 4.0</option>
             </select>
             <select className="flex-1 border p-2 rounded-md">
               <option>Response length – Auto</option>
