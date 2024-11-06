@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import 'tailwindcss/tailwind.css'; // Ensure Tailwind is loaded
 
-// Placeholder data for the demos and pricing
-const demoData = [
-  { title: "Demo 1", desc: "Description of demo 1" },
-  { title: "Demo 2", desc: "Description of demo 2" },
-  { title: "Demo 3", desc: "Description of demo 3" },
-  { title: "Demo 4", desc: "Description of demo 4" },
-];
-
-const pricingPlans = [
-  { title: "Basic", price: "$10", features: ["Feature A", "Feature B", "Feature C"] },
-  { title: "Pro", price: "$25", features: ["Feature D", "Feature E", "Feature F"] },
-  { title: "Enterprise", price: "$50", features: ["Feature G", "Feature H", "Feature I"] }
+// Demo data for the demos
+const demos = [
+  {
+    title: 'Web Search',
+    description: 'Explore intelligent and optimized web searches.',
+    videoUrl: 'https://path_to_web_search_demo.gif', // Replace with actual URL
+  },
+  {
+    title: 'Chat with Documents',
+    description: 'Interact with your documents using AI.',
+    videoUrl: 'https://path_to_chat_with_documents_demo.gif', // Replace with actual URL
+  },
+  {
+    title: 'Text Generator',
+    description: 'Generate high-quality content with AI.',
+    videoUrl: 'https://path_to_text_generator_demo.gif', // Replace with actual URL
+  },
 ];
 
 // Intersection observer for animations on scroll
@@ -24,504 +29,519 @@ const useAnimateOnScroll = (threshold = 0.1) => {
 
 export default function LandingPage() {
   const parallaxRef = useAnimateOnScroll();
+  
+  // State for selected demo
+  const [selectedDemo, setSelectedDemo] = useState({
+    title: 'Web Search',
+    description: 'Explore intelligent and optimized web searches.',
+    videoUrl: 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif', // Replace with actual URL
+    isVideo: true, // Set to true if using a video
+  });
 
   return (
-    // <div className="font-sans text-gray-900">
-    //   {/* Navbar */}
-    //   <header className="fixed top-0 w-full bg-white shadow-lg z-50 transition duration-500 ease-in-out">
-    //     <nav className="container mx-auto p-4 flex justify-between items-center">
-    //       <a href="/" className="text-2xl font-bold text-[#0957D0]">GenAI</a>
-    //       <ul className="flex space-x-6">
-    //         <li><a href="#demos" className="hover:text-[#0957D0] transition-colors duration-300">Demos</a></li>
-    //         <li><a href="#pricing" className="hover:text-[#0957D0] transition-colors duration-300">Pricing</a></li>
-    //         <li><a href="#contact" className="hover:text-[#0957D0] transition-colors duration-300">Contact</a></li>
-    //       </ul>
-    //     </nav>
-    //   </header>
-
-    //   {/* Parallax Carousel */}
-    //   <section 
-    //     className="h-screen relative bg-fixed bg-center bg-cover bg-[#0957D0]"
-    //     style={{ backgroundImage: "url('https://via.placeholder.com/1500')" }}
-    //   >
-    //     <div className="absolute inset-0 bg-[#0957D0] opacity-75"></div>
-    //     <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white space-y-4 animate-fadeIn">
-    //       <h1 className="text-6xl font-bold animate-slideUp">Next-Gen AI Solutions</h1>
-    //       <p className="text-xl">Experience AI like never before</p>
-    //       <button className="px-6 py-3 bg-white text-[#0957D0] font-semibold rounded-lg shadow-lg hover:bg-[#0957D0] hover:text-white transition duration-500 ease-in-out">
-    //         Get Started
-    //       </button>
-    //     </div>
-    //   </section>
-
-    //   {/* Demo Sections */}
-    //   <section id="demos" className="py-16 bg-white">
-    //     {demoData.map((demo, idx) => {
-    //       const { ref, inView } = useAnimateOnScroll();
-    //       return (
-    //         <div
-    //           key={demo.title}
-    //           className={`container mx-auto py-12 flex ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center opacity-0 transition-opacity duration-500 ease-out ${inView && 'opacity-100'}`}
-    //           ref={ref}
-    //         >
-    //           <div className="w-1/2">
-    //             <img
-    //               src="https://via.placeholder.com/600"
-    //               alt={demo.title}
-    //               className="rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105"
-    //             />
-    //           </div>
-    //           <div className="w-1/2 p-8">
-    //             <h2 className="text-4xl font-bold mb-4 text-[#0957D0]">{demo.title}</h2>
-    //             <p className="text-lg text-gray-700">{demo.desc}</p>
-    //           </div>
-    //         </div>
-    //       );
-    //     })}
-    //   </section>
-
-    //   {/* Pricing and Plans */}
-    //   <section id="pricing" className="py-16 bg-[#0957D0] text-white">
-    //     <div className="container mx-auto">
-    //       <h2 className="text-4xl font-bold text-center mb-12">Pricing Plans</h2>
-    //       <div className="flex justify-center space-x-8">
-    //         {pricingPlans.map((plan) => (
-    //           <div
-    //             key={plan.title}
-    //             className="bg-white text-[#0957D0] shadow-lg rounded-lg p-8 w-1/3 transform transition-transform duration-500 hover:scale-105 hover:bg-[#0957D0] hover:text-white"
-    //           >
-    //             <h3 className="text-2xl font-bold mb-4">{plan.title}</h3>
-    //             <p className="text-4xl font-semibold mb-6">{plan.price}</p>
-    //             <ul className="space-y-2 mb-6">
-    //               {plan.features.map((feature, idx) => (
-    //                 <li key={idx} className="flex items-center">
-    //                   <span className="text-teal-500">&#10003;</span>
-    //                   <span className="ml-2">{feature}</span>
-    //                 </li>
-    //               ))}
-    //             </ul>
-    //             <button className="w-full px-4 py-2 bg-[#0957D0] text-white font-semibold rounded-lg hover:bg-white hover:text-[#0957D0] transition duration-500 ease-in-out">
-    //               Select Plan
-    //             </button>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //   </section>
-
-    //   {/* Footer */}
-    //   <footer id="contact" className="py-12 bg-gray-900 text-white">
-    //     <div className="container mx-auto flex justify-between items-center">
-    //       <p>&copy; 2024 GenAI. All Rights Reserved.</p>
-    //       <div className="flex space-x-4">
-    //         <a href="#" className="hover:text-teal-400 transition duration-300">Twitter</a>
-    //         <a href="#" className="hover:text-teal-400 transition duration-300">LinkedIn</a>
-    //         <a href="#" className="hover:text-teal-400 transition duration-300">GitHub</a>
-    //       </div>
-    //     </div>
-    //   </footer>
-    // </div>
-<>
-<div class="bg-white">
-  <header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-      <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
-          <img class="h-12 w-auto" src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png" alt=""/>
-        </a>
-      </div>
-      <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-          <span class="sr-only">Open main menu</span>
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
-      </div>
-    
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
-      </div>
-      
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </nav>
-
-    
- <div class="lg:hidden" role="dialog" aria-modal="true">
-     
-      <div class="fixed inset-0 z-50"></div>
-      <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
-          </a>
-          <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-            <span class="sr-only">Close menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+    <>
+      <div className="bg-white">
+        <header className="absolute inset-x-0 top-0 z-50">
+          <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div className="flex lg:flex-1">
+              <a href="#" className="-m-1.5 p-1.5">
+                <span className="sr-only">Your Company</span>
+                <img
+                  className="h-12 w-auto"
+                  src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png"
+                  alt=""
+                />
+              </a>
             </div>
-            <div class="py-6">
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+            <div className="flex lg:hidden">
+              <button
+                type="button"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              >
+                <span className="sr-only">Open main menu</span>
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <div class="relative isolate px-6 pt-10 lg:px-8">
-    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" ></div>
-    </div>
-    <div class="mx-auto max-w-4xl py-32 sm:py-48 lg:py-52">
-      <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        {/* <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-          Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-        </div> */}
-      </div>
-      
-      <div class="text-center">
-   
-        <h1 class="mt-12 text-4xl font-bold text-gray-900 sm:text-6xl tracking-normal">Intelligence of the world’s best AI LLMs combined into one! </h1>
-        <p class="mt-7 text-3xl leading-8 tracking-normal text-gray-600">Chat with your documents, search the web like never before, prepare world class documents & content – all using the best AI models</p>
-        <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a href="#" class="rounded-2xl text-lg bg-black px-7 py-4 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Try Our Super LLM for Free!</a>
-          
-        </div>
-      </div>
-    </div>
-    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" ></div>
-    </div>
-  </div>
-</div>
-
-<div class="bg-gray-50 py-24 sm:py-32">
-  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-center text-base/7 font-semibold text-indigo-600">Fast and Reliable</h2>
-    <p class="mx-auto mt-2 max-w-lg text-pretty text-center text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">Everything you need is on your app.</p>
-    <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-      <div class="relative lg:row-span-2">
-        <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-          <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-            <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Mobile friendly</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</p>
-          </div>
-          <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-            <div class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
-              <img class="size-full object-cover object-top" src="https://tailwindui.com/plus/img/component-images/bento-03-mobile-friendly.png" alt=""/>
+            <div className="hidden lg:flex lg:gap-x-12">
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Product
+              </a>
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Features
+              </a>
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Marketplace
+              </a>
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Company
+              </a>
             </div>
-          </div>
-        </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
-      </div>
-      <div class="relative max-lg:row-start-1">
-        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-            <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Performance</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.</p>
-          </div>
-          <div class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-            <img class="w-full max-lg:max-w-xs" src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png" alt=""/>
-          </div>
-        </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
-      </div>
-      <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-        <div class="absolute inset-px rounded-lg bg-white"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
-          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-            <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Security</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.</p>
-          </div>
-          <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
-            <img class="h-[min(152px,40cqw)] object-cover object-center" src="https://tailwindui.com/plus/img/component-images/bento-03-security.png" alt=""/>
-          </div>
-        </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
-      </div>
-      <div class="relative lg:row-span-2">
-        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-          <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-            <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Powerful APIs</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget sem sodales gravida.</p>
-          </div>
-          <div class="relative min-h-[30rem] w-full grow">
-            <div class="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl">
-              <div class="flex bg-gray-800/40 ring-1 ring-white/5">
-                <div class="-mb-px flex text-sm font-medium leading-6 text-gray-400">
-                  <div class="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">NotificationSetting.jsx</div>
-                  <div class="border-r border-gray-600/10 px-4 py-2">App.jsx</div>
+
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Log in <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </nav>
+
+          {/* Mobile Menu (Optional) */}
+          <div className="lg:hidden" role="dialog" aria-modal="true">
+            <div className="fixed inset-0 z-50"></div>
+            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+              <div className="flex items-center justify-between">
+                <a href="#" className="-m-1.5 p-1.5">
+                  <span className="sr-only">Your Company</span>
+                  <img
+                    className="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt=""
+                  />
+                </a>
+                <button
+                  type="button"
+                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                >
+                  <span className="sr-only">Close menu</span>
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="mt-6 flow-root">
+                <div className="-my-6 divide-y divide-gray-500/10">
+                  <div className="space-y-2 py-6">
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Product
+                    </a>
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Features
+                    </a>
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Marketplace
+                    </a>
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Company
+                    </a>
+                  </div>
+                  <div className="py-6">
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Log in
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div class="px-6 pb-14 pt-6">
-                
+            </div>
+          </div>
+        </header>
+
+        <div className="relative isolate px-6 pt-10 lg:px-8">
+          <div
+            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true"
+          >
+            <div
+              className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-30 bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            ></div>
+          </div>
+          <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-52">
+            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+              {/* Optional Announcement */}
+            </div>
+
+            <div className="text-center">
+              <h1 className="mt-12 text-4xl font-bold text-gray-900 sm:text-6xl tracking-normal">
+                Intelligence of the world’s best AI LLMs combined into one!
+              </h1>
+              <p className="mt-7 text-3xl leading-8 tracking-normal text-gray-600">
+                Chat with your documents, search the web like never before, prepare world class documents & content – all using the best AI models
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <a
+                  href="#"
+                  className="rounded-2xl text-lg bg-black px-7 py-4 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Try Our Super LLM for Free!
+                </a>
               </div>
             </div>
           </div>
+          <div
+            className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+            aria-hidden="true"
+          >
+            <div
+              className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            ></div>
+          </div>
         </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
       </div>
-    </div>
+      
+
+      {/* Buttons and Demo Preview Section */}
+      <div className="py-12 bg-gray-50 flex flex-col items-center">
+        <h2 className="text-2xl font-semibold text-black mb-8">Explore Our Features</h2>
+        <div className="flex space-x-4 mb-10">
+          {demos.map((demo) => (
+            <button
+              key={demo.title}
+              onClick={() => setSelectedDemo(demo)}
+              className={`px-6 py-3 rounded-full font-medium text-white transition ${
+                selectedDemo.title === demo.title
+                  ? 'bg-black hover:bg-black'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+            >
+              {demo.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Display Selected Demo */}
+        <div
+          ref={parallaxRef.ref}
+          className={`rounded-xl overflow-hidden w-full max-w-6xl shadow-lg transition-transform transform ${
+            parallaxRef.inView ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        >
+          <div className="bg-white rounded-lg p-6 text-center">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">{selectedDemo.title}</h3>
+            <p className="text-gray-600 mb-6">{selectedDemo.description}</p>
+            <div className="w-full rounded-lg overflow-hidden bg-gray-900 shadow-lg">
+              {selectedDemo.isVideo ? (
+                <video
+                  src={selectedDemo.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full h-80 object-cover"
+                />
+              ) : (
+                <img
+                  src={selectedDemo.videoUrl} // Assuming videoUrl can also hold image URLs
+                  alt={selectedDemo.title}
+                  className="w-full h-80 object-cover"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="relative bg-gradient-to-br from-blue-100 to-indigo-200 py-16">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-3xl font-bold text-gray-900">Start Your Journey with GenAI</h2>
+    <p className="mt-4 text-lg text-gray-700">Discover the limitless potential of AI-driven solutions with GenAI. Join us today!</p>
+    <a href="#" className="inline-block mt-8 px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">Get Started</a>
   </div>
 </div>
 
 
-{/* Pricing Section */}
+      {/* Additional Sections (Features, Pricing, etc.) */}
+      {/* ... Your existing features and pricing sections ... */}
 
-<div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl sm:text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple no-tricks pricing</h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
-    </div>
-    <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-      <div class="p-8 sm:p-10 lg:flex-auto">
-        <h3 class="text-2xl font-bold tracking-tight text-gray-900">One day membership</h3>
-        <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
-        <div class="mt-10 flex items-center gap-x-4">
-          <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
-          <div class="h-px flex-auto bg-gray-100"></div>
-        </div>
-        <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Private forum access
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Member resources
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Entry to annual conference
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Official member t-shirt
-          </li>
-        </ul>
+      {/* Pricing Section (Uncomment and Adjust as Needed) */}
+      {/* <div className="bg-white py-24 sm:py-32">
+        {/* Pricing content here */}
+      {/* </div> */}
+      <div className="bg-white py-12">
+  <h2 className="text-2xl font-semibold text-center text-gray-900 mb-10">Why Choose Us?</h2>
+  <div className="grid gap-6 px-6 lg:px-24 md:grid-cols-3">
+    {[
+      { title: 'Secure & Reliable', icon: 'fa-solid fa-lock', description: 'Data privacy and security is our top priority.' },
+      { title: 'High Performance', icon: 'fa-solid fa-bolt', description: 'Experience fast and accurate responses.' },
+      { title: 'User-Friendly', icon: 'fa-solid fa-magic', description: 'Designed with an intuitive, easy-to-use interface.' },
+    ].map((feature, idx) => (
+      <div key={idx} className="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-lg transition hover:scale-105">
+        <i className={`${feature.icon} text-4xl text-indigo-500`}></i>
+        <h3 className="mt-4 text-xl font-semibold text-gray-800">{feature.title}</h3>
+        <p className="mt-2 text-center text-gray-600">{feature.description}</p>
       </div>
-      <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-        <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-          <div class="mx-auto max-w-xs px-8">
-            <p class="text-base font-semibold text-gray-600">Pay once, own it forever</p>
-            <p class="mt-6 flex items-baseline justify-center gap-x-2">
-              <span class="text-5xl font-bold tracking-tight text-gray-900">$349</span>
-              <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
-            </p>
-            <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get access</a>
-            <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-      <div class="p-8 sm:p-10 lg:flex-auto">
-        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Monthly membership</h3>
-        <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
-        <div class="mt-10 flex items-center gap-x-4">
-          <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
-          <div class="h-px flex-auto bg-gray-100"></div>
-        </div>
-        <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Private forum access
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Member resources
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Entry to annual conference
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Official member t-shirt
-          </li>
-        </ul>
-      </div>
-      <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-        <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-          <div class="mx-auto max-w-xs px-8">
-            <p class="text-base font-semibold text-gray-600">Pay once, own it forever</p>
-            <p class="mt-6 flex items-baseline justify-center gap-x-2">
-              <span class="text-5xl font-bold tracking-tight text-gray-900">$349</span>
-              <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
-            </p>
-            <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get access</a>
-            <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-      <div class="p-8 sm:p-10 lg:flex-auto">
-        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Annual membership</h3>
-        <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
-        <div class="mt-10 flex items-center gap-x-4">
-          <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
-          <div class="h-px flex-auto bg-gray-100"></div>
-        </div>
-        <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Private forum access
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Member resources
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Entry to annual conference
-          </li>
-          <li class="flex gap-x-3">
-            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-            </svg>
-            Official member t-shirt
-          </li>
-        </ul>
-      </div>
-      <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-        <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-          <div class="mx-auto max-w-xs px-8">
-            <p class="text-base font-semibold text-gray-600">Pay once, own it forever</p>
-            <p class="mt-6 flex items-baseline justify-center gap-x-2">
-              <span class="text-5xl font-bold tracking-tight text-gray-900">$349</span>
-              <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
-            </p>
-            <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get access</a>
-            <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    ))}
   </div>
 </div>
 
 
 
-<footer class="bg-white dark:bg-gray-900">
-    <div class="mx-auto w-full max-w-screen-xl">
-      <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
-        <div>
-            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class=" hover:underline">About</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Careers</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Brand Center</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Blog</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Discord Server</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Twitter</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Facebook</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Contact Us</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Licensing</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h2>
-            <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">iOS</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Android</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Windows</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">MacOS</a>
-                </li>
-            </ul>
-        </div>
+      <div className="bg-gray-50 py-16">
+  <h2 className="text-3xl font-bold text-center text-gray-900">Choose Your Plan</h2>
+  <p className="mt-4 text-center text-gray-600 text-lg max-w-2xl mx-auto">
+    Select the plan that fits your needs and start harnessing the power of GenAI today.
+  </p>
+
+  <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6 lg:px-8">
+    {/* Basic Plan */}
+    <div className="p-8 bg-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105">
+      <h3 className="text-xl font-semibold text-gray-800">Basic Plan</h3>
+      <p className="text-gray-600 mt-2">Great for individuals starting out with GenAI.</p>
+      <div className="mt-4 text-gray-900">
+        <span className="text-4xl font-bold">$19</span>
+        <span className="text-xl">/month</span>
+      </div>
+      <ul className="mt-6 space-y-3 text-gray-600">
+        <li>✔️ Access to Basic Features</li>
+        <li>✔️ 5GB Storage</li>
+        <li>✔️ Email Support</li>
+        <li className="line-through">Priority Support</li>
+        <li className="line-through">API Access</li>
+      </ul>
+      <button className="mt-8 w-full bg-black text-white font-semibold py-2 rounded-lg shadow hover:bg-indigo-700">
+        Choose Basic
+      </button>
     </div>
-    
+
+    {/* Standard Plan */}
+    <div className="p-8 bg-black text-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105 relative">
+      <span className="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+      <h3 className="text-xl font-semibold">Standard Plan</h3>
+      <p className="mt-2">Ideal for small teams wanting enhanced features.</p>
+      <div className="mt-4">
+        <span className="text-4xl font-bold">$49</span>
+        <span className="text-xl">/month</span>
+      </div>
+      <ul className="mt-6 space-y-3">
+        <li>✔️ Access to All Features</li>
+        <li>✔️ 20GB Storage</li>
+        <li>✔️ Priority Email Support</li>
+        <li>✔️ API Access</li>
+        <li className="line-through"> Phone Support</li>
+      </ul>
+      <button className="mt-8 w-full bg-white text-black font-semibold py-2 rounded-lg shadow hover:bg-gray-100">
+        Choose Standard
+      </button>
     </div>
-</footer>
 
-</>
+    {/* Premium Plan */}
+    <div className="p-8 bg-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105">
+      <h3 className="text-xl font-semibold text-gray-800">Premium Plan</h3>
+      <p className="text-gray-600 mt-2">Perfect for large teams needing full support and advanced features.</p>
+      <div className="mt-4 text-gray-900">
+        <span className="text-4xl font-bold">$99</span>
+        <span className="text-xl">/month</span>
+      </div>
+      <ul className="mt-6 space-y-3 text-gray-600">
+        <li>✔️ All Standard Features</li>
+        <li>✔️ 100GB Storage</li>
+        <li>✔️ 24/7 Phone & Email Support</li>
+        <li>✔️ API Access</li>
+        <li>✔️ Dedicated Account Manager</li>
+      </ul>
+      <button className="mt-8 w-full bg-black text-white font-semibold py-2 rounded-lg shadow hover:bg-indigo-700">
+        Choose Premium
+      </button>
+    </div>
+  </div>
+</div>
 
 
+
+
+
+<div className="bg-white py-12">
+  <h2 className="text-2xl font-semibold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+  <div className="max-w-2xl mx-auto">
+    {[
+      { question: 'How secure is my data?', answer: 'We use industry-standard encryption to keep your data safe.' },
+      { question: 'What AI models are used?', answer: 'We integrate top models from various providers for best performance.' },
+      { question: 'Is there a free trial?', answer: 'Yes, we offer a 7-day free trial for new users.' },
+    ].map((faq, idx) => (
+      <div key={idx} className="p-4 mb-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-all">
+        <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+        <p className="mt-2 text-gray-600">{faq.answer}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+      {/* Footer */}
+      <footer className="bg-white dark:bg-gray-900">
+        <div className="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
+          <div className="md:flex md:justify-between">
+            <div className="mb-6 md:mb-0">
+              <a href="#" className="flex items-center">
+                <img
+                  src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png"
+                  className="h-8 me-3"
+                  alt="FlowBite Logo"
+                />
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  Resources
+                </h2>
+                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <a href="https://flowbite.com/" className="hover:underline">
+                      Flowbite
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tailwindcss.com/" className="hover:underline">
+                      Tailwind CSS
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  Follow us
+                </h2>
+                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <a href="https://github.com/themesberg/flowbite" className="hover:underline">
+                      Github
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">
+                      Discord
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  Legal
+                </h2>
+                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <a href="#" className="hover:underline">
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:underline">
+                      Terms &amp; Conditions
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+              © 2024 <a href="https://flowbite.com/" className="hover:underline">
+                4GenAI
+              </a>. All Rights Reserved.
+            </span>
+            <div className="flex mt-4 sm:justify-center sm:mt-0">
+              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                {/* Facebook Icon */}
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 8 19"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">Facebook page</span>
+              </a>
+              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                {/* Discord Icon */}
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 21 16"
+                >
+                  <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                </svg>
+                <span className="sr-only">Discord community</span>
+              </a>
+              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                {/* Twitter Icon */}
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 17"
+                >
+                  <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                </svg>
+                <span className="sr-only">Twitter page</span>
+              </a>
+              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                {/* GitHub Icon */}
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 17"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">GitHub account</span>
+              </a>
+              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                {/* Dribbble Icon */}
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">Dribbble account</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
