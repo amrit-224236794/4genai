@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import 'tailwindcss/tailwind.css'; // Ensure Tailwind is loaded
 
+import './slanding.css'
 // Demo data for the demos
 const demos = [
   {
@@ -42,57 +43,65 @@ export default function LandingPage() {
     <>
       <div className="bg-white">
         <header className="absolute inset-x-0 top-0 z-50">
-          <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <div className="flex lg:flex-1">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  className="h-12 w-auto"
-                  src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div className="flex lg:hidden">
-              <button
-                type="button"
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Open main menu</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-              </button>
-            </div>
+        <nav
+  className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 lg:px-8 bg-inherit z-50 bg-white"
+  aria-label="Global"
+>
+  <div className="flex lg:flex-1">
+    <a href="#" className="-m-1.5 p-1.5">
+      <span className="sr-only">Your Company</span>
+      <img
+        className="h-12 w-auto"
+        src="https://i.ibb.co/VqMpVS3/Whats-App-Image-2024-10-09-at-00-17-26-removebg-preview.png"
+        alt=""
+      />
+    </a>
+  </div>
+  <div className="flex lg:hidden">
+    <button
+      type="button"
+      className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+    >
+      <span className="sr-only">Open main menu</span>
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        />
+      </svg>
+    </button>
+  </div>
 
-            <div className="hidden lg:flex lg:gap-x-12">
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Product
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Features
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Marketplace
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Company
-              </a>
-            </div>
+  <div className="hidden lg:flex lg:gap-x-12">
+    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+      Product
+    </a>
+    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+      Features
+    </a>
+    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+      Marketplace
+    </a>
+    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+      Company
+    </a>
+  </div>
 
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Log in <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </nav>
+  <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+      Log in <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</nav>
+
 
           {/* Mobile Menu (Optional) */}
           <div className="lg:hidden" role="dialog" aria-modal="true">
@@ -103,6 +112,7 @@ export default function LandingPage() {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
+                    
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
                   />
@@ -167,14 +177,23 @@ export default function LandingPage() {
         </header>
 
         <div className="relative isolate px-6 pt-10 lg:px-8">
-          <div
-            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-            aria-hidden="true"
-          >
-            <div
-              className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-30 bg-gradient-to-tr from-[#a8c5f0] to-[#95b8ec] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            ></div>
-          </div>
+        <div
+  className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 animate-float"
+  aria-hidden="true"
+>
+  <div
+    className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-45 bg-gradient-to-tr from-[#7f5af0] via-[#3c9aff] to-[#f72585] opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] animate-gradient"
+  ></div>
+</div>
+
+<div
+  className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)] animate-float"
+  aria-hidden="true"
+>
+  <div
+    className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-30deg] bg-gradient-to-tr from-[#7f5af0] via-[#3c9aff] to-[#f72585] opacity-40 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] animate-gradient"
+  ></div>
+</div>
           <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-52">
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
               {/* Optional Announcement */}
@@ -211,53 +230,43 @@ export default function LandingPage() {
 
       {/* Buttons and Demo Preview Section */}
       <div className="py-12 bg-gray-50 flex flex-col items-center">
-        <h2 className="text-2xl font-semibold text-black mb-8">Explore Our Features</h2>
-        <div className="flex space-x-4 mb-10">
-          {demos.map((demo) => (
-            <button
-              key={demo.title}
-              onClick={() => setSelectedDemo(demo)}
-              className={`px-6 py-3 rounded-full font-medium text-white transition ${
-                selectedDemo.title === demo.title
-                  ? 'bg-black hover:bg-black'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-            >
-              {demo.title}
-            </button>
-          ))}
-        </div>
-
-        {/* Display Selected Demo */}
-        <div
-          ref={parallaxRef.ref}
-          className={`rounded-xl overflow-hidden w-full max-w-6xl shadow-lg transition-transform transform ${
-            parallaxRef.inView ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+    <h2 className="text-2xl font-semibold text-black mb-8">Explore Our Features</h2>
+    <div className="flex space-x-4 mb-10">
+      {demos.map((demo) => (
+        <button
+          key={demo.title}
+          onClick={() => setSelectedDemo(demo)}
+          className={`px-6 py-3 rounded-full font-medium text-white transition ${
+            selectedDemo.title === demo.title
+              ? 'bg-black hover:bg-black'
+              : 'bg-gray-300 hover:bg-gray-400'
           }`}
         >
-          <div className="bg-white rounded-lg p-6 text-center">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">{selectedDemo.title}</h3>
-            <p className="text-gray-600 mb-6">{selectedDemo.description}</p>
-            <div className="w-full rounded-lg overflow-hidden bg-gray-900 shadow-lg">
-              {selectedDemo.isVideo ? (
-                <video
-                  src={selectedDemo.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  className="w-full h-80 object-cover"
-                />
-              ) : (
-                <img
-                  src={selectedDemo.videoUrl} // Assuming videoUrl can also hold image URLs
-                  alt={selectedDemo.title}
-                  className="w-full h-80 object-cover"
-                />
-              )}
-            </div>
-          </div>
+          {demo.title}
+        </button>
+      ))}
+    </div>
+
+    {/* Display Selected Demo */}
+    <div ref={parallaxRef.ref} className="rounded-xl overflow-hidden w-full max-w-6xl shadow-lg">
+      <div className="bg-white rounded-lg p-6 text-center">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">{selectedDemo.title}</h3>
+        <p className="text-gray-600 mb-6">{selectedDemo.description}</p>
+        <div className="w-full rounded-lg overflow-hidden bg-gray-900 shadow-lg">
+          {selectedDemo.videoUrl ? (
+            selectedDemo.videoUrl.endsWith('.mp4') ? (
+              <video src={selectedDemo.videoUrl} autoPlay loop muted className="w-full h-80 object-cover" />
+            ) : (
+              <img src={selectedDemo.videoUrl} alt={selectedDemo.title} className="w-full h-80 object-cover" />
+            )
+          ) : (
+            <p className="text-white">No media available</p>
+          )}
         </div>
       </div>
+    </div>
+  </div>
+);
 
 
       <div className="relative bg-gradient-to-br from-blue-100 to-indigo-200 py-16">

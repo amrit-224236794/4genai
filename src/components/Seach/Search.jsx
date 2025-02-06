@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdAttachFile } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
+import { FaFolder, FaExternalLinkAlt, FaRobot, FaTextHeight, FaListUl, FaGlobe } from "react-icons/fa";
 
 function SearchComponent({ search, setSearch, handleInputChange, handleSearch }) {
   const [dropdownOpen, setDropdownOpen] = useState(null);
@@ -15,25 +16,34 @@ function SearchComponent({ search, setSearch, handleInputChange, handleSearch })
   });
   const dropdownRefs = useRef({});
 
-  const adjustHeight = (element) => {
-    element.style.height = 'auto';
-    element.style.height = `${element.scrollHeight}px`;
+  const iconMap = {
+    source: {
+      "List of folders": <FaFolder className="mr-2" />, 
+      "External Sources": <FaExternalLinkAlt className="mr-2" />,
+    },
+    model: {
+      "GPT-4.0": <FaRobot className="mr-2" />, 
+      "Claude 3.5": <FaRobot className="mr-2" />, 
+      "o1-mini": <FaRobot className="mr-2" />, 
+      "Gemini 1.5 Pro": <FaRobot className="mr-2" />, 
+      "Llama 3.1 405B": <FaRobot className="mr-2" />,
+    },
+    responseLength: {
+      "Auto": <FaTextHeight className="mr-2" />, 
+      "Short": <FaTextHeight className="mr-2" />, 
+      "Medium": <FaTextHeight className="mr-2" />, 
+      "Large": <FaTextHeight className="mr-2" />,
+    },
+    responseType: {
+      "Paragraph": <FaListUl className="mr-2" />, 
+      "Pointers": <FaListUl className="mr-2" />, 
+      "Summary": <FaListUl className="mr-2" />,
+    },
+    includeWebResults: {
+      "Yes": <FaGlobe className="mr-2" />, 
+      "No": <FaGlobe className="mr-2" />,
+    },
   };
-
-  const toggleDropdown = (type) => {
-    setDropdownOpen(dropdownOpen === type ? null : type);
-  };
-
-  const handleSelection = (type, option) => {
-    setSelectedOptions((prev) => ({
-      ...prev,
-      [type]: option,
-    }));
-    setDropdownOpen(null);
-  };
-
-  const dropdownStyle = "absolute bg-white shadow-lg rounded-xl p-2 w-[240px] mt-1 z-10 border border-gray-200 transition-transform ease-out duration-300";
-  const dropdownItemStyle = "cursor-pointer hover:bg-gray-100 p-2 rounded-lg flex flex-col transition-all transform ease-out duration-200";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,52 +57,30 @@ function SearchComponent({ search, setSearch, handleInputChange, handleSearch })
     };
   }, []);
 
-  useEffect(() => {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = 'auto';
-      if (search.length > 0) {
-        const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
-        const newHeight = Math.min(
-          lineHeight * 10,
-          Math.max(lineHeight * 2, textarea.scrollHeight)
-        );
-        textarea.style.height = `${newHeight}px`;
-      } else {
-        textarea.style.height = 'auto';
-      }
-    }
-  }, [search]);
-
   return (
-    <div className="animated-border w-full max-w-6xl min-w-[700px] mx-auto flex flex-col items-center justify-between rounded-3xl  bg-white shadow-xl" style={{ position: 'sticky', bottom: 0 }}>
-      {/* Search Bar */}
-      <div className="relative flex items-center mb-4  w-full">
+<div className="animated-border w-full max-w-6xl min-w-[700px] mx-auto flex flex-col items-center justify-between rounded-3xl  bg-white shadow-xl" style={{ position: 'sticky', bottom: 0 }}>
+      <div className="relative flex items-center mb-4 w-full">
         <div className="absolute left-4 flex items-center">
           <MdAttachFile className="text-gray-500 mr-3 text-2xl" />
         </div>
         <textarea
           ref={textareaRef}
-          className="rounded-t-3xl p-4 pl-16 pr-16 w-full text-[#14343B] text-md focus:outline-none  resize-none overflow-y-auto"
+          className="rounded-t-3xl p-4 pl-16 pr-16 w-full text-[#14343B] text-md focus:outline-none resize-none overflow-y-auto"
           placeholder="Ask me anything..."
           value={search}
           onChange={handleInputChange}
-          rows={1}
-          style={{ maxHeight: '200px', minHeight: '40px' }}
         />
         <div className="absolute right-4 flex items-center">
           <IoSearch
             onClick={handleSearch}
             className={`text-gray-500 ml-3 text-2xl ${search.trim() === '' ? 'cursor-not-allowed text-gray-300' : 'cursor-pointer'}`}
-            style={{ opacity: search.trim() === '' ? 0.5 : 1 }}
           />
         </div>
       </div>
 
-      {/* Dropdown Menu for Filters */}
-      <div className="w-full flex flex-col items-center justify-between text-gray-600 mt-4">
+      <div className="w-full flex flex-col items-center text-gray-600 mt-4">
         <div className="w-full flex justify-between bg-[#F9FAFB] p-3 rounded-b-3xl">
-          {["source", "model", "responseLength", "responseType", "includeWebResults"].map((type, index) => (
+          {Object.keys(selectedOptions).map((type) => (
             <div
               key={type}
               className="relative flex-1 flex justify-center group"
@@ -100,35 +88,20 @@ function SearchComponent({ search, setSearch, handleInputChange, handleSearch })
               onMouseEnter={() => setDropdownOpen(type)}
               onMouseLeave={() => setDropdownOpen(null)}
             >
-              <button
-                onClick={() => toggleDropdown(type)}
-                className="text-black text-sm flex items-center gap-1"
-              >
+              <button className="text-black text-sm flex items-center gap-1">
+                {iconMap[type][selectedOptions[type]]}
                 {selectedOptions[type]} <BsChevronDown />
               </button>
-              {(dropdownOpen === type) && (
-                <div className={`${dropdownStyle} left-2`}>
-                  <p className="font-semibold text-gray-900 mb-1 text-xs">{type.replace(/([A-Z])/g, ' $1')}</p>
+              {dropdownOpen === type && (
+                <div className="absolute bg-white shadow-lg rounded-xl p-2 w-[240px] mt-1 z-10 border border-gray-200">
                   <ul className="text-sm">
-                    {(type === "source" ? ["List of folders", "External Sources"] :
-                      type === "model" ? ["GPT-4.0", "Claude 3.5", "o1-mini", "Gemini 1.5 Pro", "Llama 3.1 405B"] :
-                      type === "responseLength" ? ["Auto", "Short", "Medium", "Large"] :
-                      type === "responseType" ? ["Paragraph", "Pointers", "Summary"] :
-                      ["Yes", "No"]
-                    ).map((option) => (
+                    {Object.keys(iconMap[type]).map((option) => (
                       <li
                         key={option}
-                        onClick={() => handleSelection(type, option)}
-                        className={dropdownItemStyle}
+                        onClick={() => setSelectedOptions((prev) => ({ ...prev, [type]: option }))}
+                        className="cursor-pointer hover:bg-gray-100 p-2 rounded-lg flex items-center"
                       >
-                        <span className="font-bold text-gray-700">{option}</span>
-                        <span className="text-gray-500 text-xs">
-                          {type === "source" && "Browse through your saved folders or add external sources."}
-                          {type === "model" && "Choose the AI model for processing."}
-                          {type === "responseLength" && "Set the length of the response output."}
-                          {type === "responseType" && "Select the format of the response."}
-                          {type === "includeWebResults" && "Choose whether to include results from the web."}
-                        </span>
+                        {iconMap[type][option]}{option}
                       </li>
                     ))}
                   </ul>

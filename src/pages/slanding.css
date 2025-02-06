@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/clash-display");
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  /* Gradient Background Animation */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Fade-in and Scale for Headline */
+  @keyframes fadeScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Button Hover Animation */
+  @keyframes buttonGlow {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  /* Apply Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-gradient {
+    background: linear-gradient(270deg, #7f5af0, #3c9aff, #f72585, #ff9f1c);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+  }
+  
+  .animate-fade-scale {
+    animation: fadeScale 1.2s ease-out forwards;
+  }
+  
+  .animate-button:hover {
+    animation: buttonGlow 1s ease-in-out infinite alternate;
+  }
+  

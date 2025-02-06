@@ -51,7 +51,7 @@ function Dashboard() {
           <div className="flex flex-wrap gap-2">
             <select onChange={(e) => { setModel(e.target.value); console.log(e.target.value); }} className="flex-1 border p-2 rounded-md">
               <option >Model – 4GenAI</option>
-              <option>Mistral</option>
+              <option>Mistral <AiOutlineCalendar className="inline text-lg" /></option>
               <option>Llama 70B</option>
               <option>Wizard</option>
               <option>GPT 3.5</option>
