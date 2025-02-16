@@ -6,21 +6,38 @@ import './slanding.css'
 // Demo data for the demos
 const demos = [
   {
-    title: 'Web Search',
-    description: 'Explore intelligent and optimized web searches.',
-    videoUrl: 'https://path_to_web_search_demo.gif', // Replace with actual URL
+    title: "Chat with your documents",
+    description: "Create your own knowledge library and find answers easily.",
+    videoUrl: "example.mp4",
+    features: [
+      "Create your own knowledge library",
+      "Chat with documents and find answers easily",
+      "Create documents using content from your library",
+      "Sources for verified results",
+      "Summarize documents for quick reads",
+    ],
   },
   {
-    title: 'Chat with Documents',
-    description: 'Interact with your documents using AI.',
-    videoUrl: 'https://path_to_chat_with_documents_demo.gif', // Replace with actual URL
+    title: "Search web",
+    description: "Search the web better using chat.",
+    videoUrl: "example2.mp4",
+    features: [
+      "Focused search – Academic, Mathematics, Wikipedia, Social",
+      "Sources for verified results",
+      "AI Image search and generation",
+    ],
   },
   {
-    title: 'Text Generator',
-    description: 'Generate high-quality content with AI.',
-    videoUrl: 'https://path_to_text_generator_demo.gif', // Replace with actual URL
+    title: "Write",
+    description: "Generate world-class documents using your library and web.",
+    videoUrl: "example3.mp4",
+    features: [
+      "Generate replies to emails and letters",
+      "Re-writing drafts with grammar and tone correction",
+    ],
   },
 ];
+
 
 // Intersection observer for animations on scroll
 const useAnimateOnScroll = (threshold = 0.1) => {
@@ -29,6 +46,28 @@ const useAnimateOnScroll = (threshold = 0.1) => {
 };
 
 export default function LandingPage() {
+
+  
+const tabs = [
+  {
+    name: "Chat with your documents",
+    description:
+      "Interact with your documents using AI-powered chat. Upload PDFs, Word files, and more to get summaries, insights, and answers instantly.",
+    video: "https://www.example.com/chat-demo.mp4",
+  },
+  {
+    name: "Write with AI",
+    description:
+      "Generate high-quality content effortlessly with AI. Whether it's articles, emails, or reports, let AI assist you in writing efficiently.",
+    video: "https://www.example.com/write-demo.mp4",
+  },
+  {
+    name: "Search the web",
+    description:
+      "Leverage AI to search the web smartly. Get summarized results, cross-check facts, and retrieve relevant information efficiently.",
+    video: "https://www.example.com/search-demo.mp4",
+  },
+];
   const parallaxRef = useAnimateOnScroll();
   
   // State for selected demo
@@ -38,6 +77,8 @@ export default function LandingPage() {
     videoUrl: 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif', // Replace with actual URL
     isVideo: true, // Set to true if using a video
   });
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <>
@@ -200,10 +241,10 @@ export default function LandingPage() {
             </div>
 
             <div className="text-center">
-              <h1 className="mt-12 text-4xl font-bold text-gray-900 sm:text-6xl tracking-normal">
-                Intelligence of the world’s best AI LLMs combined into one!
+              <h1 className="mt-12 text-4xl font-bold text-gray-900 sm:text-4xl tracking-normal">
+              Introducing 4GenAI – Intelligence of the world’s best AI LLMs combined into one!  
               </h1>
-              <p className="mt-7 text-3xl leading-8 tracking-normal text-gray-600">
+              <p className="mt-7 text-2xl leading-8 tracking-normal text-gray-600">
                 Chat with your documents, search the web like never before, prepare world class documents & content – all using the best AI models
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -228,52 +269,140 @@ export default function LandingPage() {
       </div>
       
 
-      {/* Buttons and Demo Preview Section */}
-      <div className="py-12 bg-gray-50 flex flex-col items-center">
-    <h2 className="text-2xl font-semibold text-black mb-8">Explore Our Features</h2>
-    <div className="flex space-x-4 mb-10">
-      {demos.map((demo) => (
-        <button
-          key={demo.title}
-          onClick={() => setSelectedDemo(demo)}
-          className={`px-6 py-3 rounded-full font-medium text-white transition ${
-            selectedDemo.title === demo.title
-              ? 'bg-black hover:bg-black'
-              : 'bg-gray-300 hover:bg-gray-400'
-          }`}
-        >
-          {demo.title}
-        </button>
-      ))}
-    </div>
+      
 
-    {/* Display Selected Demo */}
-    <div ref={parallaxRef.ref} className="rounded-xl overflow-hidden w-full max-w-6xl shadow-lg">
-      <div className="bg-white rounded-lg p-6 text-center">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">{selectedDemo.title}</h3>
-        <p className="text-gray-600 mb-6">{selectedDemo.description}</p>
-        <div className="w-full rounded-lg overflow-hidden bg-gray-900 shadow-lg">
-          {selectedDemo.videoUrl ? (
-            selectedDemo.videoUrl.endsWith('.mp4') ? (
-              <video src={selectedDemo.videoUrl} autoPlay loop muted className="w-full h-80 object-cover" />
-            ) : (
-              <img src={selectedDemo.videoUrl} alt={selectedDemo.title} className="w-full h-80 object-cover" />
-            )
-          ) : (
-            <p className="text-white">No media available</p>
-          )}
+
+
+
+
+
+<div class="bg-gray-50 py-24 sm:py-16">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-center text-base/7 font-semibold text-indigo-600">4Gen AI</h2>
+    <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl">Everything you need to know</p>
+    <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+            <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Multiple LLMs</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">One interface to access multiple LLMs without logging in separately.  </p>
+          </div>
+          <div class="@container relative min-h-[30rem] w-full grow max-lg:mx-auto max-lg:max-w-sm">
+            <div class="absolute inset-x-10 top-10 bottom-0 overflow-hidden shadow-2xl">
+              <img class="size-full object-cover object-top" src="https://i.ibb.co/Ldzq98V5/istockphoto-2149059417-612x612.jpg" alt=""/>
+            </div>
+          </div>
         </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 lg:rounded-l-[2rem]"></div>
+      </div>
+      <div class="relative max-lg:row-start-1">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+            <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Save money</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Don’t pay for multiple LLMs to access them. Get 10 LLMs at the price of 1</p>
+          </div>
+          <div class="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
+            <img class="w-full max-lg:max-w-xs" src="https://i.ibb.co/rK149Gq0/2283492.jpg" alt=""/>
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem]"></div>
+      </div>
+      <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+        <div class="absolute inset-px rounded-lg bg-white"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+            <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Smart model selection </p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Smart model selection based on task (e.g., GPT-4 for reasoning, Claude for creativity).</p>
+          </div>
+          <div class="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+            <img class="h-[min(152px,40cqw)] object-cover p-2" src="https://i.ibb.co/Fqq9HsWm/Screenshot-2025-02-16-102700.png" alt=""/>
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5"></div>
+      </div>
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+            <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Content Generation</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Automated content generation, summarization, or coding assistance.</p>
+          </div>
+          <div class="@container relative min-h-[30rem] w-full grow max-lg:mx-auto max-lg:max-w-sm">
+            <div class="absolute inset-x-10 top-10 bottom-0 overflow-hidden shadow-2xl">
+              <img class="size-full object-cover object-top" src="https://i.ibb.co/TDXZ4LnG/Screenshot-2025-02-17-030712.png" alt=""/>
+            </div>
+          </div>
+            
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
       </div>
     </div>
   </div>
-);
+</div>
 
 
-      <div className="relative bg-gradient-to-br from-blue-100 to-indigo-200 py-16">
+      {/* Buttons and Demo Preview Section */}
+      <div className="py-16 bg-gray-100 text-black flex flex-col items-center">
+      <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+        Explore Our Features
+      </h2>
+      
+      <div className="flex space-x-4 mb-12">
+        {demos.map((demo) => (
+          <button
+            key={demo.title}
+            onClick={() => setSelectedDemo(demo)}
+            className={`px-6 py-3 rounded-full font-medium text-white transition-all duration-300 shadow-lg backdrop-blur-md bg-opacity-50 border border-gray-700 hover:bg-opacity-80 hover:scale-105 ${
+              selectedDemo?.title === demo.title ? "bg-blue-600" : "bg-gray-800"
+            }`}
+          >
+            {demo.title}
+          </button>
+        ))}
+      </div>
+
+      {selectedDemo && (
+        <div className="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-wrap border border-gray-300">
+          {/* Features Section */}
+          <div className="w-full md:w-1/2 p-8 flex flex-col justify-center text-gray-800">
+            <h3 className="text-2xl font-semibold text-black mb-4">{selectedDemo.title}</h3>
+            <p className="mb-4 text-gray-600">{selectedDemo.description}</p>
+            <ul className="space-y-3">
+              {selectedDemo.features?.map((feature, index) => (
+                <li key={index} className="flex items-center space-x-3">
+                  <span className="text-blue-500">✔</span>
+                  <span className="text-gray-700 font-medium">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Video Section */}
+          <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-900 relative overflow-hidden">
+            {selectedDemo.videoUrl ? (
+              selectedDemo.videoUrl.endsWith(".mp4") ? (
+                <video src={selectedDemo.videoUrl} autoPlay loop muted className="w-full h-80 object-cover" />
+              ) : (
+                <img src={selectedDemo.videoUrl} alt={selectedDemo.title} className="w-full h-80 object-cover" />
+              )
+            ) : (
+              <p className="text-gray-300 p-6">No media available</p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+
+
+
+
+    <div className="relative bg-gradient-to-br from-blue-100 to-indigo-200 py-16">
   <div className="max-w-4xl mx-auto text-center">
-    <h2 className="text-3xl font-bold text-gray-900">Start Your Journey with GenAI</h2>
-    <p className="mt-4 text-lg text-gray-700">Discover the limitless potential of AI-driven solutions with GenAI. Join us today!</p>
-    <a href="#" className="inline-block mt-8 px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">Get Started</a>
+    <h2 className="text-3xl font-bold text-gray-900">Exclusive Offer: Join Now & Get 1 Month Free!</h2>
+    <p className="mt-4 text-lg text-gray-700">Unlock the full power of GenAI with our premium plan. Subscribe today and enjoy an extra month at no cost.</p>
+    <a href="#" className="inline-block mt-8 px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">Join Now</a>
   </div>
 </div>
 
@@ -285,94 +414,76 @@ export default function LandingPage() {
       {/* <div className="bg-white py-24 sm:py-32">
         {/* Pricing content here */}
       {/* </div> */}
-      <div className="bg-white py-12">
-  <h2 className="text-2xl font-semibold text-center text-gray-900 mb-10">Why Choose Us?</h2>
-  <div className="grid gap-6 px-6 lg:px-24 md:grid-cols-3">
-    {[
-      { title: 'Secure & Reliable', icon: 'fa-solid fa-lock', description: 'Data privacy and security is our top priority.' },
-      { title: 'High Performance', icon: 'fa-solid fa-bolt', description: 'Experience fast and accurate responses.' },
-      { title: 'User-Friendly', icon: 'fa-solid fa-magic', description: 'Designed with an intuitive, easy-to-use interface.' },
-    ].map((feature, idx) => (
-      <div key={idx} className="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-lg transition hover:scale-105">
-        <i className={`${feature.icon} text-4xl text-indigo-500`}></i>
-        <h3 className="mt-4 text-xl font-semibold text-gray-800">{feature.title}</h3>
-        <p className="mt-2 text-center text-gray-600">{feature.description}</p>
-      </div>
-    ))}
-  </div>
-</div>
 
 
 
-      <div className="bg-gray-50 py-16">
+
+<div className="bg-gray-50 py-16">
   <h2 className="text-3xl font-bold text-center text-gray-900">Choose Your Plan</h2>
   <p className="mt-4 text-center text-gray-600 text-lg max-w-2xl mx-auto">
     Select the plan that fits your needs and start harnessing the power of GenAI today.
   </p>
 
-  <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6 lg:px-8">
-    {/* Basic Plan */}
-    <div className="p-8 bg-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105">
-      <h3 className="text-xl font-semibold text-gray-800">Basic Plan</h3>
-      <p className="text-gray-600 mt-2">Great for individuals starting out with GenAI.</p>
-      <div className="mt-4 text-gray-900">
-        <span className="text-4xl font-bold">$19</span>
-        <span className="text-xl">/month</span>
-      </div>
-      <ul className="mt-6 space-y-3 text-gray-600">
-        <li>✔️ Access to Basic Features</li>
-        <li>✔️ 5GB Storage</li>
-        <li>✔️ Email Support</li>
-        <li className="line-through">Priority Support</li>
-        <li className="line-through">API Access</li>
-      </ul>
-      <button className="mt-8 w-full bg-black text-white font-semibold py-2 rounded-lg shadow hover:bg-indigo-700">
-        Choose Basic
-      </button>
-    </div>
-
+  <div className="mt-12 flex flex-wrap justify-center gap-8 max-w-6xl mx-auto px-6 lg:px-8">
     {/* Standard Plan */}
-    <div className="p-8 bg-black text-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105 relative">
-      <span className="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
-      <h3 className="text-xl font-semibold">Standard Plan</h3>
-      <p className="mt-2">Ideal for small teams wanting enhanced features.</p>
-      <div className="mt-4">
-        <span className="text-4xl font-bold">$49</span>
-        <span className="text-xl">/month</span>
-      </div>
-      <ul className="mt-6 space-y-3">
-        <li>✔️ Access to All Features</li>
-        <li>✔️ 20GB Storage</li>
-        <li>✔️ Priority Email Support</li>
-        <li>✔️ API Access</li>
-        <li className="line-through"> Phone Support</li>
-      </ul>
-      <button className="mt-8 w-full bg-white text-black font-semibold py-2 rounded-lg shadow hover:bg-gray-100">
-        Choose Standard
-      </button>
-    </div>
+    <div className="p-8 bg-black text-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105 relative w-full sm:w-1/2 lg:w-1/3">
+  <span className="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+  <h3 className="text-xl font-semibold">Standard Plan</h3>
+  <p className="mt-2">Ideal for small teams wanting enhanced features.</p>
+  <div className="mt-4">
+    <span className="text-4xl font-bold">$19.99</span>
+    <span className="text-xl">/month</span>
+  </div>
+  <ul className="mt-6 space-y-3">
+    <li>✔️ 2500 pages per document</li>
+    <li>✔️ Max upload size: 30MB</li>
+    <li>✔️ 50 documents per day</li>
+    <li>✔️ 1200 questions per day</li>
+    <li>✔️ 50 conversations per day</li>
+    <li>✔️ 4GenAI trial (most powerful model)</li>
+    <li>✔️ GPT-4o Mini, GPT-4 model, Claude 3 Sonnet, Claude 3 Opus, Mistral, Wizard, Llama</li>
+    <li>✔️ 50 files max in Knowledge Library</li>
+    <li>✔️ 500MB storage</li>
+    <li>✔️ OCR Support</li>
+    <li>✔️ Chat with multiple documents at once (Knowledge Library)</li>
+  </ul>
+  <button className="mt-8 w-full bg-white text-black font-semibold py-2 rounded-lg shadow hover:bg-gray-100">
+    Choose Standard
+  </button>
+</div>
+
 
     {/* Premium Plan */}
-    <div className="p-8 bg-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105">
-      <h3 className="text-xl font-semibold text-gray-800">Premium Plan</h3>
-      <p className="text-gray-600 mt-2">Perfect for large teams needing full support and advanced features.</p>
-      <div className="mt-4 text-gray-900">
-        <span className="text-4xl font-bold">$99</span>
-        <span className="text-xl">/month</span>
-      </div>
-      <ul className="mt-6 space-y-3 text-gray-600">
-        <li>✔️ All Standard Features</li>
-        <li>✔️ 100GB Storage</li>
-        <li>✔️ 24/7 Phone & Email Support</li>
-        <li>✔️ API Access</li>
-        <li>✔️ Dedicated Account Manager</li>
-      </ul>
-      <button className="mt-8 w-full bg-black text-white font-semibold py-2 rounded-lg shadow hover:bg-indigo-700">
-        Choose Premium
-      </button>
-    </div>
+    <div className="p-8 bg-white rounded-lg shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105 w-full sm:w-1/2 lg:w-1/3">
+  <h3 className="text-xl font-semibold text-gray-800">Premium Plan</h3>
+  <p className="text-gray-600 mt-2">Perfect for large teams needing full support and advanced features.</p>
+  <div className="mt-4 text-gray-900">
+    <span className="text-4xl font-bold">$199</span>
+    <span className="text-xl">/year</span>
+  </div>
+  <ul className="mt-6 space-y-3 text-gray-600">
+    <li>✔️ 5000 pages per document</li>
+    <li>✔️ Max upload size: 500MB</li>
+    <li>✔️ 150 documents per day</li>
+    <li>✔️ 100000 questions per day</li>
+    <li>✔️ 10000 conversations per day</li>
+    <li>✔️ 4GenAI (most powerful model)</li>
+    <li>✔️ GPT-4o Mini, GPT-4 model, Claude 3 Sonnet, Claude 3 Opus, Mistral, Wizard, Llama</li>
+    <li>✔️ 1000 files max in Knowledge Library</li>
+    <li>✔️ 10GB storage</li>
+    <li>✔️ OCR Support</li>
+    <li>✔️ Chat with multiple documents at once (Knowledge Base)</li>
+    <li>✔️ Priority support</li>
+    <li>✔️ Priority access to new features</li>
+  </ul>
+  <button className="mt-8 w-full bg-black text-white font-semibold py-2 rounded-lg shadow hover:bg-indigo-700">
+    Choose Premium
+  </button>
+</div>
+
   </div>
 </div>
+
 
 
 
@@ -385,6 +496,9 @@ export default function LandingPage() {
       { question: 'How secure is my data?', answer: 'We use industry-standard encryption to keep your data safe.' },
       { question: 'What AI models are used?', answer: 'We integrate top models from various providers for best performance.' },
       { question: 'Is there a free trial?', answer: 'Yes, we offer a 7-day free trial for new users.' },
+      { question: 'How many tokens do I get?', answer: 'Our plans come with generous token limits. Check our pricing page for details.' },
+      { question: 'Is switching between models seamless?', answer: 'Yes, you can switch models easily without losing context.' },
+      { question: 'Can I cancel anytime?', answer: 'Yes, you can cancel your subscription at any time without penalties.' },
     ].map((faq, idx) => (
       <div key={idx} className="p-4 mb-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-all">
         <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
@@ -393,6 +507,7 @@ export default function LandingPage() {
     ))}
   </div>
 </div>
+
 
 
       {/* Footer */}
